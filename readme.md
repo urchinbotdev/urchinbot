@@ -1,4 +1,4 @@
-# urchinbot
+v# urchinbot
 
 **urchinbot** — a local-first AI agent that lives in your browser (and soon, your Telegram). It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
 
@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. [Download urchinbot_v.002](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.002.zip)
+1. [Download urchinbot_v.002](https://github.com/urchinbotdev/urchinbot/blob/main/urchin_v.003.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
