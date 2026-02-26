@@ -10,18 +10,19 @@
 
 ## Install
 
-**Chrome Web Store (recommended):**
+**Chrome Web Store:**
 
-> Coming soon — [Chrome Web Store Link Placeholder]
+> Coming soon — Chrome Web Store link placeholder
 
-**Manual install (developer mode):**
+**Manual install:**
 
-1. Download or clone this repo
-2. Open Chrome and go to `chrome://extensions`
-3. Turn on **Developer mode** (top right)
-4. Click **Load unpacked**
-5. Select the `urchinbot-extension` folder
-6. Pin urchinbot from the puzzle piece icon in your toolbar
+1. Download `urchinbot_v.001.zip` from this repo
+2. Unzip it
+3. Open Chrome and go to `chrome://extensions`
+4. Turn on **Developer mode** (top right)
+5. Click **Load unpacked**
+6. Select the `urchinbot-extension` folder from the unzipped files
+7. Pin urchinbot from the puzzle piece icon in your toolbar
 
 ## What It Does
 
@@ -155,7 +156,9 @@ what do you remember about me?
 
 ## How UrchinLoop Works
 
-UrchinLoop is the agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
+UrchinLoop is the open-source agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
+
+Full technical documentation: [URCHINLOOP.md](URCHINLOOP.md)
 
 ### The Loop
 
@@ -213,18 +216,19 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 ## Project Structure
 
 ```
-urchinbot-extension/
-  manifest.json       Chrome MV3 config
-  background.js       Service worker, agent loop, LLM, 16 tools
-  content.js          Overlay UI, Shadow DOM, smart page context
-  styles.css          Host element styles
-  popup.html          Toolbar bubble menu
-  popup.js            Popup logic
-  options.html        Settings page
-  options.js          Settings save/load, model picker
-  urchin.png          Logo
-  icons/              16, 48, 128px toolbar icons
-  lib/jszip.min.js    ZIP generation (vendored)
+urchinbot_v.001.zip
+  urchinbot-extension/
+    manifest.json       Chrome MV3 config
+    background.js       Service worker, agent loop, LLM, 16 tools
+    content.js          Overlay UI, Shadow DOM, smart page context
+    styles.css          Host element styles
+    popup.html          Toolbar bubble menu
+    popup.js            Popup logic
+    options.html        Settings page
+    options.js          Settings save/load, model picker
+    urchin.png          Logo
+    icons/              16, 48, 128px toolbar icons
+    lib/jszip.min.js    ZIP generation (vendored)
 ```
 
 ## Security
@@ -246,7 +250,8 @@ urchinbot-extension/
 
 ### Future
 
-- Announcements Coming Soon!
+-Updates coming Soon!
+
 
 ## Disclaimers
 
