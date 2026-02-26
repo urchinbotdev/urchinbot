@@ -5,190 +5,192 @@
 ![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?logo=netlify&logoColor=white)
 ![MIT](https://img.shields.io/badge/License-MIT-green)
 
-**UrchinLoop Crypto Agent** — local-first Chrome extension overlay for AI chat, site building, Solana scanning, and Pump.fun launch assist.
+**UrchinLoop Crypto Agent** — an AI agent that lives in your browser. It sees your page, thinks step-by-step, searches the web, remembers everything, builds websites, scans Solana tokens, and deploys memecoins.
 
 ![urchinbot](urchinbot-extension/urchin.png)
 
-## What is urchinbot?
+## Install
 
-A Chrome extension that puts an AI agent overlay on any webpage. It sees your page, answers questions, builds entire websites, scans Solana tokens for rug signals, and helps deploy memecoins on Pump.fun — all from a floating panel in your browser.
+**Chrome Web Store (recommended):**
 
-## Features
+> Coming soon — [Chrome Web Store Link Placeholder]
 
-- **Ask** — Chat with an advanced AI agent that sees your page, reasons step-by-step, searches the web, and remembers things across sessions
-- **Vision** — Take screenshots and get visual analysis of any webpage
-- **Web Search** — Real-time web search for prices, news, project info
-- **Token Price** — Live Solana token prices via Jupiter aggregator
-- **Wallet Scanner** — Check any wallet's SOL balance and top token holdings
-- **Persistent Memory** — Agent remembers important info across sessions and auto-summarizes conversations
-- **Self-Critique** — Sites are auto-reviewed by an AI critic and improved before delivery
-- **Build** — Generate full static websites from a text prompt with quality self-review, preview, ZIP, or deploy live
-- **Deploy** — Prepare Pump.fun launch packets, auto-fill pump.fun/create with token info and image
-- **Scan** — Analyze Solana token mints for top holder concentration, fresh wallet flags, rug signals
-- **Edit via Chat** — Say "change the background to dark purple" and it edits your built site in place
-- **Page Images** — Grab images from any webpage to use in builds or token deploys
-- **Right-Click** — Send selected text, links, or images to urchinbot from the context menu
-- **Netlify** — One-click deploy any generated site to a live .netlify.app URL
-- **Multi-Step Planning** — Agent can chain up to 10 tool calls per request, reasoning between each step
+**Manual install (developer mode):**
 
-## Installation
+1. Download or clone this repo
+2. Open Chrome and go to `chrome://extensions`
+3. Turn on **Developer mode** (top right)
+4. Click **Load unpacked**
+5. Select the `urchinbot-extension` folder
+6. Pin urchinbot from the puzzle piece icon in your toolbar
 
-Clone the repo:
+## What It Does
 
-```
-git clone https://github.com/YOUR_USERNAME/urchinbot.git
-```
+### Agent Chat (Ask Tab)
 
-Then load it in Chrome:
+A full AI agent overlay on any webpage. It reasons step-by-step, uses tools, and remembers everything across sessions.
 
-1. Open Chrome and go to `chrome://extensions`
-2. Enable **Developer mode** (top right toggle)
-3. Click **Load unpacked**
-4. Select the `urchinbot-extension` folder
-5. Click the puzzle piece icon in your toolbar and pin urchinbot
+- Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
+- Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
+- Searches the web for real-time prices, news, and project info
+- Takes screenshots and visually analyzes pages
+- Checks live Solana token prices via Jupiter
+- Scans any wallet for SOL balance, token holdings, and transaction history
+- Compares multiple tokens side-by-side for safety
+- Reads any URL you paste and summarizes it
+- Remembers your wallets, preferences, and past conversations permanently
+- Builds and deploys websites directly from chat
+- Plans multi-step tasks with up to 12 chained tool calls
 
-## Setup
+### Site Builder (Build Tab)
 
-Click the urchinbot icon in your toolbar, then click **Settings** (or right-click the icon and choose Options).
+Describe a website in plain text and get a full static site (HTML + CSS + JS) with self-critique quality review.
 
-### LLM Provider (required)
+- AI critic scores the design and auto-fixes issues before delivery
+- Upload images from your computer or grab them from any page
+- Grabbed images are embedded directly into the built site
+- Preview inline, download as ZIP, or deploy to Netlify in one click
 
-This powers all AI features. Pick one:
+### Token Deployer (Deploy Tab)
 
-**OpenAI**
+Prepare pump.fun launch packets with auto-fill.
 
-- Get your key at https://platform.openai.com/api-keys
-- Recommended: `gpt-4o-mini` (fast + cheap) or `gpt-4o` (better quality)
+- Fill in token name, symbol, description
+- Upload a token image
+- Click to open pump.fun/create with everything pre-filled (including the image)
+- Generate a token landing page and deploy it live to Netlify
+- Pull launch info from your chat history automatically
 
-**Anthropic**
+### Token Scanner (Scan Tab)
 
-- Get your key at https://console.anthropic.com/settings/keys
-- Recommended: `claude-sonnet-4-20250514`
+Paste any Solana mint address and see:
 
-**OpenAI Compatible (Groq, Together, Ollama, etc.)**
-
-- Set the base URL (example: `http://localhost:11434/v1/chat/completions` for Ollama)
-- Pick or type your model name
-
-Steps:
-
-1. Pick your provider from the dropdown
-2. Paste your API key
-3. Select a model from the dropdown (or choose Custom and type one)
-4. Click **Save**
-
-### Solana RPC (optional)
-
-Only needed for the Scan tab (token holder analysis).
-
-- **Helius** (recommended) — https://www.helius.dev/ — 100k requests/day free
-- **QuickNode** — https://www.quicknode.com/ — limited free tier
-
-Steps:
-
-1. Sign up and copy your RPC URL
-2. Paste it in the Solana RPC URL field
-3. Click **Save**
-
-### Netlify Token (optional)
-
-Only needed for one-click web deploy from the Build and Deploy tabs.
-
-Steps:
-
-1. Go to https://app.netlify.com/user/applications#personal-access-tokens
-2. Click **New access token** and name it `urchinbot`
-3. Copy the token (only shown once)
-4. Paste it in the Netlify Personal Access Token field
-5. Click **Save**
-
-## Usage
-
-### Ask Tab
-
-Type anything in the chat. The bot sees your page and has tools.
-
-Example prompts:
-
-```
-what token is being discussed on this page?
-build me a crypto dashboard with dark theme and animated cards
-change the header to a purple gradient
-scan this token for me
-deploy a token called DogWifHat with ticker WIF
-```
-
-Other features:
-
-- Upload files/images with the paperclip button
-- Grab images from the page with the Page Images button
-- Sites built from chat auto-appear in the Build tab
-
-### Build Tab
-
-1. Describe the site you want
-2. Click **Build Site** — generates index.html, styles.css, app.js
-3. **Preview** the site inline
-4. **Download ZIP** to save locally
-5. **Deploy to Netlify** to push it live
-
-### Deploy Tab
-
-1. Fill in token name, symbol, description
-2. Upload a token image
-3. Click **Generate Launch Packet** or **From Chat Context**
-4. Click **Open & Autofill Pump.fun** — opens pump.fun/create and fills everything
-5. Click **Deploy Token Landing Page** — creates a token site and deploys to Netlify
-
-### Scan Tab
-
-1. Paste a Solana mint address
-2. See top 10 holders, concentration %, fresh wallet flags
-3. Click links to view on Solscan
+- Top 10 holders with ownership percentages
+- Holder concentration analysis
+- Fresh wallet flags (potential sybil/rug signals)
+- Direct links to Solscan
 
 ### Right-Click Menu
 
-- Highlight text, right-click: **Send selection to urchinbot**
-- Right-click a link: **Send link to urchinbot**
-- Right-click an image: **Send image to urchinbot**
-- Right-click the page: **Capture current page**
+- **Send selection** — highlight text and send to urchinbot
+- **Send link** — right-click any link
+- **Send image** — right-click any image
+- **Capture page** — send full page context
 
-### Keyboard Shortcuts
+## Setup
 
-- `Ctrl+Shift+U` — Toggle the overlay panel
-- `Escape` — Close the overlay
+Click the urchinbot icon, then **Settings**.
+
+### LLM Provider (required)
+
+Powers all AI features. Choose one:
+
+| Provider | Get Key | Recommended Model |
+|----------|---------|-------------------|
+| OpenAI | https://platform.openai.com/api-keys | gpt-4o or gpt-4o-mini |
+| Anthropic | https://console.anthropic.com/settings/keys | claude-sonnet-4-20250514 |
+| OpenAI Compatible | Your provider's dashboard | Any chat model |
+
+For OpenAI Compatible providers (Groq, Together, Ollama, etc.), also set the base URL.
+
+### Solana RPC (optional)
+
+Required for token scanning, wallet checks, and transaction history.
+
+| Provider | Link | Free Tier |
+|----------|------|-----------|
+| Helius | https://www.helius.dev | 100k requests/day |
+| QuickNode | https://www.quicknode.com | Limited |
+
+### Netlify Token (optional)
+
+Required for one-click web deploy.
+
+1. Go to https://app.netlify.com/user/applications#personal-access-tokens
+2. Create a new token named `urchinbot`
+3. Paste it in Settings
+
+## Example Prompts
+
+```
+what token is this page about?
+search for latest Solana news
+what's the price of JUP?
+check wallet 7xKX... balance and recent transactions
+compare these tokens: MINT1, MINT2, MINT3
+take a screenshot and tell me what you see
+read this URL: https://example.com/article
+build me a crypto dashboard with dark theme
+deploy my site to netlify
+change the hero section to a gradient background
+deploy a token called DogWifHat with ticker WIF
+remember my wallet is 7xKX...
+what do you remember about me?
+```
+
+## Agent Tools
+
+| Tool | What It Does |
+|------|-------------|
+| Web Search | Real-time search via DuckDuckGo |
+| Screenshot | Captures and visually analyzes current page |
+| Token Price | Live price via Jupiter aggregator |
+| Wallet Balance | SOL + top token holdings via RPC |
+| Wallet History | Recent transaction history |
+| Multi-Scan | Compare multiple tokens for safety |
+| Fetch URL | Read and summarize any webpage |
+| Build Site | Generate full static website with AI self-review |
+| Edit Site | Modify existing site via chat |
+| Deploy Site | Push to Netlify from chat |
+| Token Launch | Prepare pump.fun launch packet |
+| Memory | Save and recall info across sessions |
+| Detect Mints | Extract Solana addresses from text |
+
+## Agent Memory
+
+The agent has a 5-layer memory system:
+
+1. **Condensed History** — compressed narrative of all past conversations (never expires)
+2. **Recent Chat** — last 30 messages at full fidelity
+3. **User Profile** — auto-extracted permanent knowledge (wallets, preferences, projects)
+4. **Session Summaries** — detailed bullet points from past sessions (last 20 kept)
+5. **Manual Memories** — anything you tell it to remember
+
+Click the **brain icon** in the Ask tab to view or wipe all memory.
 
 ## Project Structure
 
 ```
 urchinbot-extension/
-  manifest.json          - Chrome MV3 config
-  background.js          - Service worker, LLM, tools, agent loop
-  content.js             - Overlay UI, Shadow DOM injection
-  styles.css             - Host element styles
-  popup.html             - Toolbar bubble menu
-  popup.js               - Popup logic
-  options.html           - Settings page
-  options.js             - Settings logic
-  urchin.png             - Logo
-  icons/                 - 16, 48, 128px icons
-  lib/
-    jszip.min.js         - ZIP generation (vendored)
+  manifest.json       Chrome MV3 config
+  background.js       Service worker, agent loop, LLM, tools
+  content.js          Overlay UI, Shadow DOM, page context
+  styles.css          Host element styles
+  popup.html          Toolbar bubble menu
+  popup.js            Popup logic
+  options.html        Settings page
+  options.js          Settings save/load, model picker
+  urchin.png          Logo
+  icons/              16, 48, 128px toolbar icons
+  lib/jszip.min.js    ZIP generation (vendored)
 ```
 
 ## Security
 
-- **Local-first** — API keys stay in chrome.storage.local on your machine. Nothing leaves your browser except calls to the LLM provider you choose.
-- **No custodial keys** — urchinbot never touches wallet private keys. Pump.fun transactions are confirmed and signed by you.
-- **No tracking** — Zero analytics. Zero telemetry. Zero data collection.
+- **Local-first** — all keys and data stay in chrome.storage.local on your machine
+- **No custodial keys** — never asks for or stores seed phrases or private keys
+- **No tracking** — zero analytics, zero telemetry, zero data collection
+- **External calls** — only to your configured LLM provider, Solana RPC, DuckDuckGo (search), Jupiter (prices), and Netlify (deploy)
+- **Memory is local** — persistent memory is stored in chrome.storage.local, never sent to external servers
 
 ## Disclaimers
 
 This is a research and experimentation tool. Not financial advice.
 
 - Memecoins are extremely risky. DYOR.
-- Pump.fun integration only auto-fills forms. You review and confirm all transactions.
-- AI-generated sites should be reviewed before production use.
+- Pump.fun integration only auto-fills forms. You review and confirm all transactions yourself.
+- AI-generated websites should be reviewed before production use.
+- Token scanning shows on-chain data — interpretation is up to you.
 
 ## License
 
