@@ -1,4 +1,4 @@
-# urchinbot
+# Urchinbot
 
 **urchinbot** — a local-first AI agent that lives in your browser (and soon, your Telegram). It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
 
