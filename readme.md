@@ -158,7 +158,7 @@ what do you remember about me?
 
 UrchinLoop is the open-source agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
 
-Full technical documentation: [URCHINLOOP.md](URCHINLOOP.md)
+Full technical documentation: [URCHINLOOP.md](https://github.com/urchinbotdev/urchinbot/blob/main/urchinloop.md)
 
 ### The Loop
 
