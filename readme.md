@@ -1,4 +1,4 @@
-# urchinbot
+#urchinbot
 
 ![Chrome MV3](https://img.shields.io/badge/Chrome-Manifest_V3-4285F4?logo=googlechrome\&logoColor=white)
 ![Solana](https://img.shields.io/badge/Solana-Mainnet-9945FF?logo=solana\&logoColor=white)
