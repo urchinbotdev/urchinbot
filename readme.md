@@ -1,8 +1,12 @@
 # urchinbot
 
-**urchinbot** — a local-first AI agent Chrome extension. It lives on every page, thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
+**urchinbot** — a local-first AI agent that lives in your browser (and soon, your Telegram). It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
 
-![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchin.png)
+> Telegram bot coming soon. Same brain. Same tools. No extension needed.
+
+**Follow:** [x.com/urchinbot](https://x.com/urchinbot)
+
+![urchinbot](urchinbot-extension/urchin.png)
 
 ## Install
 
@@ -230,6 +234,26 @@ urchinbot-extension/
 - **No tracking** — zero analytics, zero telemetry, zero data collection
 - **External calls** — only to your configured LLM provider, Solana RPC, DuckDuckGo (search), Jupiter (prices), and Netlify (deploy)
 - **Memory is local** — persistent memory stored in chrome.storage.local, never sent to external servers
+
+## Roadmap
+
+### Coming Soon
+
+- Telegram bot — full urchinbot agent in your DMs, same 16 tools and memory
+- Upgraded agent reasoning — deeper multi-step planning, smarter tool selection
+- One-command site deploys with custom domains
+- Token launch automation improvements
+
+### Future
+
+- ██████████ ██████ integration
+- Live ████████ monitoring with ██████ alerts
+- Multi-chain support (██████, ████, ████████)
+- ██████ execution via ████████ ██████████
+- Agent-to-agent ██████████████
+- ████████ dashboard with ██████ analytics
+- Mobile ████████ companion app
+- ██████████ marketplace for agent ██████
 
 ## Disclaimers
 
