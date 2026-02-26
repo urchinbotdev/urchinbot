@@ -6,7 +6,7 @@
 
 **Follow:** [x.com/urchinbot](https://x.com/urchinbot)
 
-![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchin.png)
+![urchinbot](urchinbot-extension/urchin.png)
 
 ## Install
 
@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. Download `urchinbot_v.001.zip` from this repo
+1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.001.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
@@ -158,7 +158,7 @@ what do you remember about me?
 
 UrchinLoop is the open-source agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
 
-Full technical documentation: [URCHINLOOP.md](https://github.com/urchinbotdev/urchinbot/blob/main/urchinloop.md)
+Full technical documentation: [URCHINLOOP.md](URCHINLOOP.md)
 
 ### The Loop
 
