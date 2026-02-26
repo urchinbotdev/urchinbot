@@ -12,7 +12,7 @@
 
 **Chrome Web Store:**
 
-> Coming soon — Chrome Web Store link placeholder
+> Coming soon !
 
 **Manual install:**
 
