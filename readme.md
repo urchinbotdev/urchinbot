@@ -146,6 +146,51 @@ what do you remember about me?
 | Memory | Save and recall info across sessions |
 | Detect Mints | Extract Solana addresses from text |
 
+## How UrchinLoop Works
+
+UrchinLoop is the agent runtime that powers urchinbot. It's not a simple chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
+
+### The Loop
+
+Every time you send a message, UrchinLoop runs this cycle:
+
+```
+You send a message
+       |
+  [Load Memory] — condensed history, user profile, session summaries, saved memories
+       |
+  [Build Context] — page URL, visible text, selected text, tweets, DEX pairs,
+                     crypto links, form data, uploaded files, current project
+       |
+  [Auto-Detect] — identify page type (DexScreener, Birdeye, pump.fun, etc.),
+                   extract mint addresses, cashtags, prices from the page
+       |
+  [THINK] — agent reasons internally (hidden from you):
+            "What does the user want? What tools do I need? What do I already know?"
+       |
+  [ACT] — call a tool (search, scan, screenshot, build, deploy, fetch, remember...)
+       |
+  [OBSERVE] — get the tool result back
+       |
+  [DECIDE] — need more info? loop back to THINK → ACT → OBSERVE (up to 12 steps)
+             have enough? write the final answer
+       |
+  [RESPOND] — send the answer back to you
+       |
+  [REMEMBER] — background: save session summary, update user profile,
+               compress old history (non-blocking, doesn't slow you down)
+```
+
+The agent can chain up to 12 tool calls in a single request. For example, asking "compare these 3 tokens and check the deployer wallets" might trigger: MULTI_SCAN → GET_WALLET_BALANCE → GET_WALLET_HISTORY → WEB_SEARCH → final analysis.
+
+### What Makes It Smart
+
+- **Mandatory chain-of-thought** — the agent thinks before every action, planning its approach in hidden reasoning blocks
+- **Auto-context** — it detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
+- **Proactive behavior** — it notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
+- **Self-critique on builds** — when building websites, an AI critic scores the design (1-10) and auto-fixes issues if the score is below 8
+- **Non-blocking memory** — memory updates happen in the background after the response, so you never wait for memory saves
+
 ## Agent Memory
 
 The agent has a 5-layer memory system:
