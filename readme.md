@@ -246,14 +246,7 @@ urchinbot-extension/
 
 ### Future
 
-- ██████████ ██████ integration
-- Live ████████ monitoring with ██████ alerts
-- Multi-chain support (██████, ████, ████████)
-- ██████ execution via ████████ ██████████
-- Agent-to-agent ██████████████
-- ████████ dashboard with ██████ analytics
-- Mobile ████████ companion app
-- ██████████ marketplace for agent ██████
+- Announcements Coming Soon!
 
 ## Disclaimers
 
