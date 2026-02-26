@@ -5,7 +5,7 @@
 ![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?logo=netlify&logoColor=white)
 ![MIT](https://img.shields.io/badge/License-MIT-green)
 
-**UrchinLoop Crypto Agent** — an AI agent that lives in your browser. It sees your page, thinks step-by-step, searches the web, remembers everything, builds websites, scans Solana tokens, and deploys memecoins.
+**urchinbot** — a local-first AI agent Chrome extension. It lives on every page, thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
 
 ![urchinbot](urchinbot-extension/urchin.png)
 
@@ -28,7 +28,7 @@
 
 ### Agent Chat (Ask Tab)
 
-A full AI agent overlay on any webpage. It reasons step-by-step, uses tools, and remembers everything across sessions.
+A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 16 tools, and remembers everything across sessions.
 
 - Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
 - Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
@@ -39,7 +39,8 @@ A full AI agent overlay on any webpage. It reasons step-by-step, uses tools, and
 - Compares multiple tokens side-by-side for safety
 - Reads any URL you paste and summarizes it
 - Remembers your wallets, preferences, and past conversations permanently
-- Builds and deploys websites directly from chat
+- Builds, edits, and deploys websites directly from chat
+- Lists and deletes your Netlify sites from chat
 - Plans multi-step tasks with up to 12 chained tool calls
 
 ### Site Builder (Build Tab)
@@ -50,6 +51,7 @@ Describe a website in plain text and get a full static site (HTML + CSS + JS) wi
 - Upload images from your computer or grab them from any page
 - Grabbed images are embedded directly into the built site
 - Preview inline, download as ZIP, or deploy to Netlify in one click
+- Manage all your Netlify sites — view, visit, or bulk-delete old deploys
 
 ### Token Deployer (Deploy Tab)
 
@@ -104,7 +106,7 @@ Required for token scanning, wallet checks, and transaction history.
 
 ### Netlify Token (optional)
 
-Required for one-click web deploy.
+Required for one-click web deploy and site management.
 
 1. Go to https://app.netlify.com/user/applications#personal-access-tokens
 2. Create a new token named `urchinbot`
@@ -113,6 +115,7 @@ Required for one-click web deploy.
 ## Example Prompts
 
 ```
+what are you?
 what token is this page about?
 search for latest Solana news
 what's the price of JUP?
@@ -122,33 +125,38 @@ take a screenshot and tell me what you see
 read this URL: https://example.com/article
 build me a crypto dashboard with dark theme
 deploy my site to netlify
+show me my netlify sites
+delete the old ones
 change the hero section to a gradient background
 deploy a token called DogWifHat with ticker WIF
 remember my wallet is 7xKX...
 what do you remember about me?
 ```
 
-## Agent Tools
+## Agent Tools (16)
 
 | Tool | What It Does |
 |------|-------------|
 | Web Search | Real-time search via DuckDuckGo |
 | Screenshot | Captures and visually analyzes current page |
-| Token Price | Live price via Jupiter aggregator |
-| Wallet Balance | SOL + top token holdings via RPC |
-| Wallet History | Recent transaction history |
-| Multi-Scan | Compare multiple tokens for safety |
 | Fetch URL | Read and summarize any webpage |
-| Build Site | Generate full static website with AI self-review |
+| Token Price | Live Solana token price via Jupiter |
+| Wallet Balance | SOL + top token holdings via RPC |
+| Wallet History | Recent transaction history for any wallet |
+| Token Scan | Top holders, concentration, fresh wallet flags |
+| Multi-Scan | Compare up to 5 tokens side-by-side for safety |
+| Detect Mints | Extract Solana addresses from any text |
+| Build Site | Generate full static website with AI self-critique |
 | Edit Site | Modify existing site via chat |
-| Deploy Site | Push to Netlify from chat |
-| Token Launch | Prepare pump.fun launch packet |
-| Memory | Save and recall info across sessions |
-| Detect Mints | Extract Solana addresses from text |
+| Deploy Site | Push current site to Netlify from chat |
+| List Sites | Show all your Netlify sites |
+| Delete Site | Remove a Netlify site by ID |
+| Token Launch | Prepare pump.fun launch packet + auto-fill |
+| Memory | Save/recall info across sessions (REMEMBER/RECALL) |
 
 ## How UrchinLoop Works
 
-UrchinLoop is the agent runtime that powers urchinbot. It's not a simple chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
+UrchinLoop is the agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
 
 ### The Loop
 
@@ -172,7 +180,7 @@ You send a message
        |
   [OBSERVE] — get the tool result back
        |
-  [DECIDE] — need more info? loop back to THINK → ACT → OBSERVE (up to 12 steps)
+  [DECIDE] — need more info? loop back to THINK > ACT > OBSERVE (up to 12 steps)
              have enough? write the final answer
        |
   [RESPOND] — send the answer back to you
@@ -181,15 +189,15 @@ You send a message
                compress old history (non-blocking, doesn't slow you down)
 ```
 
-The agent can chain up to 12 tool calls in a single request. For example, asking "compare these 3 tokens and check the deployer wallets" might trigger: MULTI_SCAN → GET_WALLET_BALANCE → GET_WALLET_HISTORY → WEB_SEARCH → final analysis.
+The agent can chain up to 12 tool calls in a single request. For example, asking "compare these 3 tokens and check the deployer wallets" might trigger: MULTI_SCAN then GET_WALLET_BALANCE then GET_WALLET_HISTORY then WEB_SEARCH then final analysis.
 
 ### What Makes It Smart
 
 - **Mandatory chain-of-thought** — the agent thinks before every action, planning its approach in hidden reasoning blocks
-- **Auto-context** — it detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
-- **Proactive behavior** — it notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
-- **Self-critique on builds** — when building websites, an AI critic scores the design (1-10) and auto-fixes issues if the score is below 8
-- **Non-blocking memory** — memory updates happen in the background after the response, so you never wait for memory saves
+- **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
+- **Proactive behavior** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
+- **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
+- **Non-blocking memory** — memory updates happen in the background after the response, so you never wait
 
 ## Agent Memory
 
@@ -208,8 +216,8 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 ```
 urchinbot-extension/
   manifest.json       Chrome MV3 config
-  background.js       Service worker, agent loop, LLM, tools
-  content.js          Overlay UI, Shadow DOM, page context
+  background.js       Service worker, agent loop, LLM, 16 tools
+  content.js          Overlay UI, Shadow DOM, smart page context
   styles.css          Host element styles
   popup.html          Toolbar bubble menu
   popup.js            Popup logic
@@ -226,7 +234,7 @@ urchinbot-extension/
 - **No custodial keys** — never asks for or stores seed phrases or private keys
 - **No tracking** — zero analytics, zero telemetry, zero data collection
 - **External calls** — only to your configured LLM provider, Solana RPC, DuckDuckGo (search), Jupiter (prices), and Netlify (deploy)
-- **Memory is local** — persistent memory is stored in chrome.storage.local, never sent to external servers
+- **Memory is local** — persistent memory stored in chrome.storage.local, never sent to external servers
 
 ## Disclaimers
 
