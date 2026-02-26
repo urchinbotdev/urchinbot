@@ -1,10 +1,5 @@
 # urchinbot
 
-![Chrome MV3](https://img.shields.io/badge/Chrome-Manifest_V3-4285F4?logo=googlechrome&logoColor=white)
-![Solana](https://img.shields.io/badge/Solana-Mainnet-9945FF?logo=solana&logoColor=white)
-![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?logo=netlify&logoColor=white)
-![MIT](https://img.shields.io/badge/License-MIT-green)
-
 **urchinbot** — a local-first AI agent Chrome extension. It lives on every page, thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
 
 ![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchin.png)
