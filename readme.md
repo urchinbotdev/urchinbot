@@ -7,7 +7,7 @@
 
 **urchinbot** — a local-first AI agent Chrome extension. It lives on every page, thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
 
-![urchinbot](urchinbot-extension/urchin.png)
+![urchinbot](urchinbot/urchin.png)
 
 ## Install
 
