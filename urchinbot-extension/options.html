@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>urchinbot Settings</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --base: #0a0e1a;
+  --surface: rgba(255, 255, 255, 0.04);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --purple: #a855f7;
+  --teal: #00ffd5;
+  --orange: #ff6b35;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --red: #ef4444;
+  --gray: #94a3b8;
+  --text: #e2e8f0;
+  --text-dim: #64748b;
+  --input-bg: #1a1f35;
+}
+
+body {
+  background: var(--base);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  padding: 40px 20px 60px;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.header .emoji {
+  font-size: 36px;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 213, 0.3));
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header .subtitle {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* ── Card Sections ── */
+.card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.card.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  position: relative;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title .icon { font-size: 16px; }
+
+.coming-soon {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  background: rgba(255, 107, 53, 0.12);
+  border: 1px solid rgba(255, 107, 53, 0.25);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 8px;
+}
+
+/* ── Form Controls ── */
+.field {
+  margin-bottom: 16px;
+}
+
+.field:last-child { margin-bottom: 0; }
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.field input::placeholder { color: var(--text-dim); }
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0, 255, 213, 0.1);
+}
+
+.field select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.field select option {
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+/* ── Toggle Switch ── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.toggle-row + .toggle-row {
+  border-top: 1px solid var(--glass-border);
+  margin-top: 4px;
+  padding-top: 12px;
+}
+
+.toggle-label {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle .slider {
+  position: absolute;
+  inset: 0;
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.toggle .slider::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gray);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.toggle input:checked + .slider {
+  background: rgba(0, 255, 213, 0.15);
+  border-color: var(--teal);
+}
+
+.toggle input:checked + .slider::before {
+  transform: translateX(20px);
+  background: var(--teal);
+  box-shadow: 0 0 8px rgba(0, 255, 213, 0.4);
+}
+
+/* ── Buttons ── */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.2s ease;
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-save {
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  color: var(--base);
+}
+
+.btn-save:hover {
+  box-shadow:
+    0 0 20px rgba(0, 255, 213, 0.3),
+    0 0 40px rgba(168, 85, 247, 0.15);
+}
+
+.btn-clear {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--red);
+}
+
+.btn-clear:hover {
+  border-color: var(--red);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.15);
+}
+
+/* ── Status Message ── */
+.status {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  min-height: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.status.success { color: var(--green); }
+.status.error   { color: var(--red); }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <img src="urchin.png" alt="urchinbot" style="width:48px;height:48px;border-radius:50%;box-shadow:0 0 16px rgba(168,85,247,0.4);">
+    <div>
+      <h1>urchinbot Settings</h1>
+      <div class="subtitle">configure your crypto agent overlay</div>
+    </div>
+  </div>
+
+  <!-- LLM Configuration -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🧠</span> LLM Configuration</div>
+    <div class="field">
+      <label>Provider</label>
+      <select id="llm-provider">
+        <option value="">— select provider —</option>
+        <option value="anthropic">Anthropic</option>
+        <option value="openai">OpenAI</option>
+        <option value="openai_compatible">OpenAI-Compatible</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>API Key</label>
+      <input type="password" id="llm-api-key" placeholder="sk-..." autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Model</label>
+      <select id="llm-model">
+        <option value="">— select model —</option>
+      </select>
+    </div>
+    <div class="field" id="custom-model-field" style="display:none;">
+      <label>Custom Model Name</label>
+      <input type="text" id="llm-model-custom" placeholder="your-model-name">
+    </div>
+    <div class="field" id="base-url-field" style="display:none;">
+      <label>Base URL</label>
+      <input type="text" id="llm-base-url" placeholder="https://your-endpoint.com/v1">
+    </div>
+  </div>
+
+  <!-- Solana -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⛓️</span> Solana</div>
+    <div class="field">
+      <label>RPC URL</label>
+      <input type="text" id="solana-rpc" placeholder="https://mainnet.helius-rpc.com/?api-key=...">
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⚡</span> Features</div>
+    <div class="toggle-row">
+      <span class="toggle-label">Enable Claude / LLM summaries</span>
+      <label class="toggle">
+        <input type="checkbox" id="feat-llm-summaries">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span class="toggle-label">Enable overlay on all sites</span>
+      <label class="toggle">
+        <input type="checkbox" id="feat-overlay-all">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span class="toggle-label">Companion Mode <span style="color:var(--text-dim);font-size:11px;">(floating urchin avatar on every page)</span></span>
+      <label class="toggle">
+        <input type="checkbox" id="feat-companion">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span class="toggle-label">Side Panel on icon click <span style="color:var(--text-dim);font-size:11px;">(clicking extension icon opens docked side panel instead of popup)</span></span>
+      <label class="toggle">
+        <input type="checkbox" id="feat-sidepanel">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Netlify Deploy -->
+  <div class="card">
+    <div class="card-title">
+      <span class="icon">🚀</span> Netlify (Instant Web Deploy)
+    </div>
+    <div class="field">
+      <label>Personal Access Token</label>
+      <input type="password" id="netlify-token" placeholder="Paste token from app.netlify.com/user/applications" autocomplete="off">
+      <small style="color:#94a3b8;font-size:11px;margin-top:4px;display:block;">One token = instant deploys. Get yours at <a href="https://app.netlify.com/user/applications#personal-access-tokens" target="_blank" style="color:#00ffd5;">Netlify → User Settings → Applications</a></small>
+    </div>
+  </div>
+
+  <!-- Pump.fun Defaults -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> Pump.fun Defaults</div>
+    <div class="field">
+      <label>Default Token Name Template</label>
+      <input type="text" id="pump-token-name" placeholder="e.g. {{handle}}_token">
+    </div>
+    <div class="field">
+      <label>Default Token Symbol Template</label>
+      <input type="text" id="pump-token-symbol" placeholder="e.g. ${{HANDLE}}">
+    </div>
+    <div class="toggle-row">
+      <span class="toggle-label">Use captured image for launches</span>
+      <label class="toggle">
+        <input type="checkbox" id="pump-use-image">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> Links</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="https://github.com/urchinbotdev/urchinbot/tree/main" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;text-decoration:none;font-size:13px;font-weight:600;transition:all .15s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://x.com/urchinbot" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;text-decoration:none;font-size:13px;font-weight:600;transition:all .15s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        X / Twitter
+      </a>
+      <a href="https://urchinbot.fun/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;text-decoration:none;font-size:13px;font-weight:600;transition:all .15s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Website
+      </a>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-save" id="btn-save">Save Settings</button>
+    <button class="btn btn-clear" id="btn-clear">Clear All Settings</button>
+  </div>
+  <div class="status" id="status-msg"></div>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

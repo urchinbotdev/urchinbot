@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=340">
+<title>urchinbot</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --base: #0a0e1a;
+  --surface: rgba(255, 255, 255, 0.04);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --purple: #a855f7;
+  --teal: #00ffd5;
+  --orange: #ff6b35;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --gray: #94a3b8;
+  --text: #e2e8f0;
+  --text-dim: #64748b;
+}
+
+body {
+  width: 340px;
+  height: 420px;
+  background: var(--base);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Floating bubble particles ── */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat linear infinite;
+}
+
+.particle:nth-child(1)  { width: 6px;  height: 6px;  left: 8%;   background: var(--teal);   animation-duration: 12s; animation-delay: 0s;   }
+.particle:nth-child(2)  { width: 4px;  height: 4px;  left: 22%;  background: var(--purple); animation-duration: 15s; animation-delay: 2s;   }
+.particle:nth-child(3)  { width: 8px;  height: 8px;  left: 38%;  background: var(--teal);   animation-duration: 10s; animation-delay: 4s;   }
+.particle:nth-child(4)  { width: 3px;  height: 3px;  left: 55%;  background: var(--purple); animation-duration: 18s; animation-delay: 1s;   }
+.particle:nth-child(5)  { width: 5px;  height: 5px;  left: 70%;  background: var(--blue);   animation-duration: 13s; animation-delay: 3s;   }
+.particle:nth-child(6)  { width: 7px;  height: 7px;  left: 85%;  background: var(--teal);   animation-duration: 11s; animation-delay: 5s;   }
+.particle:nth-child(7)  { width: 4px;  height: 4px;  left: 15%;  background: var(--orange);  animation-duration: 16s; animation-delay: 6s;  }
+.particle:nth-child(8)  { width: 5px;  height: 5px;  left: 48%;  background: var(--green);  animation-duration: 14s; animation-delay: 0.5s; }
+.particle:nth-child(9)  { width: 3px;  height: 3px;  left: 62%;  background: var(--purple); animation-duration: 17s; animation-delay: 7s;   }
+.particle:nth-child(10) { width: 6px;  height: 6px;  left: 92%;  background: var(--teal);   animation-duration: 12s; animation-delay: 3.5s; }
+.particle:nth-child(11) { width: 4px;  height: 4px;  left: 30%;  background: var(--blue);   animation-duration: 19s; animation-delay: 8s;   }
+.particle:nth-child(12) { width: 5px;  height: 5px;  left: 78%;  background: var(--green);  animation-duration: 14s; animation-delay: 1.5s; }
+
+@keyframes particleFloat {
+  0%   { bottom: -10px; opacity: 0; transform: translateX(0) scale(0.5); }
+  10%  { opacity: 0.6; }
+  50%  { opacity: 0.3; transform: translateX(20px) scale(1); }
+  90%  { opacity: 0.5; }
+  100% { bottom: 110%; opacity: 0; transform: translateX(-15px) scale(0.3); }
+}
+
+/* ── Main layout ── */
+.popup-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 22px 14px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.urchin-icon {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.urchin-icon .core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 35%, var(--teal), var(--purple));
+  box-shadow:
+    0 0 12px var(--purple),
+    0 0 24px rgba(168, 85, 247, 0.3);
+  animation: corePulse 3s ease-in-out infinite;
+}
+
+/* Spikes via box-shadow on pseudo-elements */
+.urchin-icon .spikes {
+  position: absolute;
+  inset: 0;
+  animation: spikeRotate 20s linear infinite;
+}
+
+.urchin-icon .spikes::before,
+.urchin-icon .spikes::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+}
+
+.urchin-icon .spikes::before {
+  box-shadow:
+     0px -17px 0 0 var(--teal),
+     12px -12px 0 0 var(--purple),
+     17px  0px 0 0 var(--teal),
+     12px  12px 0 0 var(--purple),
+     0px  17px 0 0 var(--teal),
+    -12px  12px 0 0 var(--purple),
+    -17px  0px 0 0 var(--teal),
+    -12px -12px 0 0 var(--purple);
+}
+
+.urchin-icon .spikes::after {
+  box-shadow:
+     6px  -16px 0 0 rgba(0, 255, 213, 0.5),
+     16px  -6px 0 0 rgba(168, 85, 247, 0.5),
+     16px   6px 0 0 rgba(0, 255, 213, 0.5),
+     6px   16px 0 0 rgba(168, 85, 247, 0.5),
+    -6px   16px 0 0 rgba(0, 255, 213, 0.5),
+    -16px   6px 0 0 rgba(168, 85, 247, 0.5),
+    -16px  -6px 0 0 rgba(0, 255, 213, 0.5),
+    -6px  -16px 0 0 rgba(168, 85, 247, 0.5);
+}
+
+@keyframes corePulse {
+  0%, 100% { box-shadow: 0 0 12px var(--purple), 0 0 24px rgba(168, 85, 247, 0.3); }
+  50%      { box-shadow: 0 0 18px var(--teal),   0 0 36px rgba(0, 255, 213, 0.25); }
+}
+
+@keyframes spikeRotate {
+  to { transform: rotate(360deg); }
+}
+
+.header-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.header-text .tagline {
+  font-size: 10.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+/* ── Bubble grid ── */
+.bubble-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: center;
+  flex: 1;
+  align-content: center;
+}
+
+.bubble-btn {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease,
+              background 0.3s ease;
+  animation: bubbleFloat 4s ease-in-out infinite;
+  outline: none;
+}
+
+.bubble-btn:nth-child(1) { animation-delay: 0s;    }
+.bubble-btn:nth-child(2) { animation-delay: 0.4s;  }
+.bubble-btn:nth-child(3) { animation-delay: 0.8s;  }
+.bubble-btn:nth-child(4) { animation-delay: 1.2s;  }
+.bubble-btn:nth-child(5) { animation-delay: 1.6s;  }
+.bubble-btn:nth-child(6) { animation-delay: 2s;    }
+.bubble-btn:nth-child(7) { animation-delay: 2.4s;  }
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+.bubble-btn .emoji {
+  font-size: 22px;
+  line-height: 1;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.15));
+}
+
+.bubble-btn .label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.3s ease;
+}
+
+/* Glow ring (pseudo-element behind the button) */
+.bubble-btn::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+/* Per-button accent colours */
+.bubble-btn[data-tab="ask"]       { --accent: var(--teal);   }
+.bubble-btn[data-tab="sidepanel"] { --accent: var(--blue);   }
+.bubble-btn[data-tab="build"]     { --accent: var(--purple); }
+.bubble-btn[data-tab="deploy"]    { --accent: var(--orange); }
+.bubble-btn[data-tab="scan"]      { --accent: var(--green);  }
+.bubble-btn[data-tab="log"]       { --accent: var(--blue);   }
+.bubble-btn[data-tab="settings"]  { --accent: var(--gray);   }
+
+.bubble-btn::before {
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+}
+
+.bubble-btn:hover {
+  transform: translateY(-6px) scale(1.08);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 20px color-mix(in srgb, var(--accent) 35%, transparent),
+    0 0 40px color-mix(in srgb, var(--accent) 15%, transparent),
+    inset 0 0 12px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.bubble-btn:hover::before { opacity: 0.4; }
+.bubble-btn:hover .label  { color: var(--accent); }
+
+.bubble-btn:active {
+  transform: translateY(-2px) scale(0.96);
+  transition-duration: 0.1s;
+}
+
+/* ── Status bar ── */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 16px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green), 0 0 12px rgba(34, 197, 94, 0.3);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+.status-text {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--green);
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="particles">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+<div class="popup-wrap">
+  <div class="header">
+    <img src="urchin.png" alt="urchinbot" style="width:42px;height:42px;border-radius:50%;box-shadow:0 0 14px rgba(168,85,247,0.4);flex-shrink:0;">
+    <div class="header-text">
+      <h1>urchinbot</h1>
+      <div class="tagline">crypto agent overlay</div>
+    </div>
+  </div>
+
+  <div class="bubble-grid">
+    <button class="bubble-btn" data-tab="ask">
+      <span class="emoji">💬</span>
+      <span class="label">Ask</span>
+    </button>
+    <button class="bubble-btn" data-tab="sidepanel">
+      <span class="emoji">📌</span>
+      <span class="label">Panel</span>
+    </button>
+    <button class="bubble-btn" data-tab="build">
+      <span class="emoji">🏗️</span>
+      <span class="label">Build</span>
+    </button>
+    <button class="bubble-btn" data-tab="deploy">
+      <span class="emoji">🚀</span>
+      <span class="label">Deploy</span>
+    </button>
+    <button class="bubble-btn" data-tab="scan">
+      <span class="emoji">🔍</span>
+      <span class="label">Scan</span>
+    </button>
+    <button class="bubble-btn" data-tab="log">
+      <span class="emoji">📋</span>
+      <span class="label">Log</span>
+    </button>
+    <button class="bubble-btn" data-tab="settings">
+      <span class="emoji">⚙️</span>
+      <span class="label">Settings</span>
+    </button>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-dot"></div>
+    <span class="status-text">UrchinLoop Ready</span>
+  </div>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
