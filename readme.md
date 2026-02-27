@@ -6,7 +6,7 @@
 
 **Follow:** [x.com/urchinbot](https://x.com/urchinbot)
 
-![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
+![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbanner.png)
 
 ## Install
 
