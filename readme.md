@@ -1,12 +1,12 @@
 # urchinbot
 
-**urchinbot** — a local-first AI agent that lives in your browser. It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, runs autonomous background tasks, monitors tokens continuously, learns new skills over time, and remembers everything across sessions. Powered by UrchinLoop — a custom multi-step reasoning engine with 30 tools.
+**urchinbot** — a local-first AI agent that lives in your browser. It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, runs autonomous background tasks, monitors tokens continuously, learns new skills over time, tracks multi-session project goals, and remembers everything across sessions. Powered by UrchinLoop — a custom multi-step reasoning engine with 33 tools.
 
 > Telegram bot coming soon. Same brain. Same tools. No extension needed.
 
 **Follow:** [x.com/urchinbot](https://x.com/urchinbot)
 
-![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbanner.png)
+![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
 
 ## Install
 
@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. [Download urchinbot_v0.09.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.09.zip)
+1. [Download urchinbot_v0.08.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.08.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
@@ -28,7 +28,7 @@
 
 ### Agent Chat (Ask Tab)
 
-A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 30 tools, runs autonomous background tasks, monitors tokens continuously, learns new skills, and remembers everything across sessions.
+A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 33 tools, runs autonomous background tasks, monitors tokens continuously, learns new skills, tracks project goals across sessions, and remembers everything.
 
 - Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
 - Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
@@ -52,13 +52,16 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Autonomous background tasks — schedule work that runs without you waiting
 - Self-scheduling — the agent can queue its own follow-up tasks and monitoring chains
 - Self-evolving skills — learns your preferences, scores skill quality, reads satisfaction signals, and auto-prunes bad ones
+- Explicit user feedback — thumbs up/down buttons on every response directly adjust skill scores
 - Goal decomposition — automatically breaks complex multi-phase requests into ordered subtask chains with dependency tracking
+- Long-term project planning — set multi-session goals with milestones, track progress across conversations
 - Self-extending reasoning — can expand its step budget for complex analysis (up to 24 steps)
 - Proactive briefings on open — price updates, wallet balances, active alerts
 - Background task results delivered via companion chat bubble + Chrome notifications
 - Notification badge on mascot for unread background results
 - Markdown-rendered responses with bold, links, lists, code
 - Inline clickable address cards — click any Solana address to scan
+- Thumbs up/down feedback — rate responses to improve skill quality over time
 - Conversation retry — re-run any response with one click
 - Export chat history as Markdown
 - Streaming responses — see text appear in real-time
@@ -110,10 +113,11 @@ The agent gets smarter the more you use it. It learns behavioral skills, scores 
 - **Skill scoring** — every skill has a quality score (0-100) updated via exponential moving average
 - **Self-evaluation** — every 10th conversation, the agent evaluates whether active skills actually helped and adjusts scores
 - **Implicit satisfaction signals** — detects corrections ("that's wrong"), frustration ("try again"), praise ("perfect"), and conversation length to nudge skill scores up or down every turn
+- **Explicit user feedback** — thumbs up/down on responses directly adjust skill scores (+12 / -18) for skills used in that turn
 - **Auto-pruning** — skills scoring below 10 after 2+ evaluations are deleted; unused skills older than 30 days are cleaned up
 - **Skill injection** — only skills above the score threshold are loaded into conversation context
 - **Skill management** — ask "what have you learned?" to see all skills with scores, or tell it to forget one
-- **Usage tracking** — each skill tracks usage count, score, signal count, and evaluation history
+- **Usage tracking** — each skill tracks usage count, score, signal count, feedback count, and evaluation history
 - **Examples of learned skills:**
   - "Always build websites with dark mode as default"
   - "When scanning tokens, also fetch DexScreener data and check the deployer wallet"
@@ -129,6 +133,25 @@ When you send a complex multi-phase request, the agent automatically detects it,
 - **Recursive execution** — each subtask runs through the full UrchinLoop with its own reasoning steps and tool access
 - **Synthesis** — after all subtasks complete, the agent merges results into a single coherent response
 - **Graceful fallback** — if decomposition fails or isn't needed, the request runs through the normal reasoning loop
+
+### Long-Term Project Planning
+
+The agent can track multi-session goals, milestones, and progress — so complex projects don't get lost between conversations.
+
+- **SET_GOAL** — define a project with a title, description, and list of milestones
+- **UPDATE_GOAL** — mark milestones as done, add notes, update progress mid-project
+- **GET_GOALS** — retrieve all active projects with their current status
+- **Context injection** — active project plans are automatically loaded into every conversation so the agent always knows what you're working on
+- **Auto-cap** — max 10 active projects, oldest evicted when exceeded
+
+### Explicit User Feedback
+
+Rate any bot response with thumbs up or thumbs down. Feedback directly impacts the skills that were active during that response.
+
+- **Thumbs up** — boosts active skill scores by +12
+- **Thumbs down** — penalizes active skill scores by -18
+- **Available everywhere** — feedback buttons appear on every response in both panel mode and companion mode
+- **Tracked per skill** — each skill records total feedback count and last feedback timestamp
 
 ### Site Builder (Build Tab)
 
@@ -238,11 +261,14 @@ stop monitoring
 show active monitors
 what skills have you learned?
 forget the dark-mode-preference skill
+set a goal: launch token landing page by Friday
+update goal 1 — milestone 2 done
+what are my active projects?
 ```
 
-## Agent Tools (30)
+## Agent Tools (33)
 
-![urchinbot Toolkit](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-tools.png)
+![urchinbot Toolkit](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-tools.png)
 
 | Tool | What It Does |
 |------|-------------|
@@ -276,6 +302,9 @@ forget the dark-mode-preference skill
 | Learn Skill | Teach itself new behavioral instructions that persist permanently |
 | List Skills | Show all learned skills with usage stats |
 | Forget Skill | Remove an outdated or wrong learned skill |
+| Set Goal | Save a project plan with goals and milestones |
+| Update Goal | Mark milestones complete, add notes, adjust progress |
+| Get Goals | List all active projects and their status |
 
 ## How UrchinLoop Works
 
@@ -285,13 +314,13 @@ Every request runs through a structured loop. The agent doesn't just call an LLM
 
 ### Architecture
 
-![UrchinLoop Architecture](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-architecture.png)
+![UrchinLoop Architecture](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-architecture.png)
 
 ### The Loop
 
 Every time you send a message, UrchinLoop runs this cycle:
 
-![UrchinLoop Reasoning Pipeline](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-flow.png)
+![UrchinLoop Reasoning Pipeline](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-flow.png)
 
 ### Smart Routing
 
@@ -319,7 +348,7 @@ THINK: "I need the token price, DexScreener data, and deployer wallet info"
 
 UrchinLoop doesn't just respond — it can schedule future work:
 
-- **Timers** — `SET_TIMER` schedules a full agent loop to run later. When the alarm fires, UrchinLoop spins up, runs the task with all 30 tools, and pushes the result back to you
+- **Timers** — `SET_TIMER` schedules a full agent loop to run later. When the alarm fires, UrchinLoop spins up, runs the task with all 33 tools, and pushes the result back to you
 - **Monitors** — `MONITOR` creates a recurring alarm. Every tick runs a full loop with the monitoring instructions, compares against previous results, and alerts on changes
 - **Background tasks** — `SCHEDULE_TASK` queues immediate non-blocking work so the agent can do research while you keep browsing
 - **Self-continuation** — the agent can extend its own reasoning with `CONTINUE` when it needs more steps
@@ -340,14 +369,14 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
 - **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
 - **Relevance-filtered memory** — only memories and session summaries relevant to your current message are injected, preventing context rot as memory grows
-- **Non-blocking memory** — memory updates, skill learning, skill evaluation, and satisfaction signal processing happen in the background after the response, so you never wait
+- **Non-blocking memory** — memory updates, skill learning, skill evaluation, satisfaction signals, and user feedback processing happen in the background after the response, so you never wait
 - **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
 
 ## Agent Memory
 
-![UrchinLoop Memory System](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-memory.png)
+![UrchinLoop Memory System](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-memory.png)
 
-The agent has a 6-layer memory system:
+The agent has a 7-layer memory system:
 
 1. **Condensed History** — compressed narrative of all past conversations (never expires)
 2. **Recent Chat** — last 30 messages at full fidelity
@@ -355,6 +384,7 @@ The agent has a 6-layer memory system:
 4. **Session Summaries** — detailed bullet points from past sessions (last 20 kept)
 5. **Manual Memories** — anything you tell it to remember (capped at 100, oldest evicted)
 6. **Learned Skills** — self-evolving behavioral instructions, scored 0-100, auto-pruned when ineffective
+7. **Project Plans** — multi-session goals, milestones, progress (up to 10 projects)
 
 ### Context Rot Prevention
 
@@ -380,7 +410,7 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 urchinbot_v.001.zip
   urchinbot-extension/
     manifest.json       Chrome MV3 config
-    background.js       Service worker — UrchinLoop engine, LLM calls, 30 tools,
+    background.js       Service worker — UrchinLoop engine, LLM calls, 33 tools,
                         autonomous task runner, monitor scheduler, skill manager
     content.js          Overlay UI — Shadow DOM panel, companion mode, speech bubble,
                         smart page context, chat thread, result delivery
@@ -407,7 +437,7 @@ urchinbot_v.001.zip
 
 ### Coming Soon
 
-- Telegram bot — full urchinbot agent in your DMs, same 30 tools and memory
+- Telegram bot — full urchinbot agent in your DMs, same 33 tools and memory
 - Skill sharing — export/import learned skills between users
 - Custom tool definitions — teach the agent to call new APIs
 - One-command site deploys with custom domains
@@ -426,6 +456,14 @@ This is a research and experimentation tool. Not financial advice.
 - AI-generated websites should be reviewed before production use.
 - Token scanning shows on-chain data — interpretation is up to you.
 - Autonomous background tasks consume LLM API credits when they execute.
+
+## Future Updates
+
+- **Multi-agent collaboration** — spawn specialist sub-agents (researcher, coder, analyst) that collaborate on complex tasks, each with their own tool access and expertise, orchestrated by a coordinator agent
+- **Structured project memory** — persistent multi-session project plans that track goals, milestones, blockers, and progress across conversations (**implemented** — use SET_GOAL, UPDATE_GOAL, GET_GOALS)
+- **Fine-grained skill policies** — replace free-text skill instructions with structured condition/action rules for more precise behavioral control
+- **Vision-in-the-loop** — multimodal LLM calls during reasoning steps so the agent can interpret screenshots and images inline, not just as side-tool calls
+- **Code execution sandbox** — run and test generated code in an isolated environment before presenting results
 
 ## License
 
