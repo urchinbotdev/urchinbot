@@ -158,6 +158,8 @@ Paste any Solana mint address and see:
 - **Send image** — right-click any image
 - **Capture page** — send full page context
 
+![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/thinking.png)
+
 ## Setup
 
 Click the urchinbot icon, then **Settings**.
