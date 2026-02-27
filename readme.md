@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.001.zip)
+1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.008.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
@@ -28,7 +28,7 @@
 
 ### Agent Chat (Ask Tab)
 
-A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 27 tools, runs autonomous background tasks, learns new skills, and remembers everything across sessions.
+A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 30 tools, runs autonomous background tasks, monitors tokens continuously, learns new skills, and remembers everything across sessions.
 
 - Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
 - Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
@@ -64,14 +64,25 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Smart self-routing — simple questions answered instantly
 - Plans multi-step tasks with up to 24 chained tool calls
 
+### Continuous Monitoring
+
+Tell the agent to monitor a token or wallet, and it will run recurring full-intelligence checks on a schedule — not just dumb threshold alerts.
+
+- **MONITOR** — "monitor this token every 15 minutes" → recurring alarm → full agent loop with all tools each check → results delivered with change analysis
+- **Configurable interval** — minimum 5 minutes, default 15
+- **Auto-expiry** — monitors auto-stop after a set time (default 6 hours) to protect your API credits
+- **Smart change detection** — each check compares against previous results and highlights what changed
+- **Full tool access** — each monitor tick can scan tokens, check prices, query DexScreener, search the web, check wallets — whatever the instructions say
+- **LIST_MONITORS** — see all active monitors, checks run, time remaining
+- **STOP_MONITOR** — cancel any monitor at any time
+
 ### Autonomous Background Tasks
 
-The agent can work while you're not watching. Schedule tasks that run through the full UrchinLoop with all tools available, then deliver results when ready.
+The agent can work while you're not watching — but only when you ask it to. It never schedules background work on its own.
 
 - **SET_TIMER** — "check this token in 30 minutes and analyze the change" → fires on schedule → full agent loop → result delivered
 - **SCHEDULE_TASK** — queue immediate or delayed background work, non-blocking
-- **Self-scheduling** — the agent proactively schedules its own follow-ups (re-checks, monitoring, research)
-- **Task chaining** — autonomous tasks can schedule more tasks, creating self-sustaining monitoring chains
+- **Suggest, don't force** — the agent will suggest background work when useful ("want me to keep monitoring this?") but never schedules it without your explicit confirmation
 - **Persistent queue** — tasks survive browser restarts, tracked as pending → running → done/failed
 - **Result delivery** — background results appear in chat with a purple separator, show in the companion speech bubble, trigger Chrome notifications, and display a red badge on the mascot
 
@@ -192,12 +203,15 @@ deploy a token called DogWifHat with ticker WIF
 remember my wallet is 7xKX...
 what do you remember about me?
 check this token again in 30 minutes and tell me if the price changed
-monitor this wallet for the next hour
+monitor this token every 15 minutes
+keep an eye on this wallet for the next 2 hours
+stop monitoring
+show active monitors
 what skills have you learned?
 forget the dark-mode-preference skill
 ```
 
-## Agent Tools (27)
+## Agent Tools (30)
 
 | Tool | What It Does |
 |------|-------------|
@@ -224,6 +238,9 @@ forget the dark-mode-preference skill
 | Remind Me | Schedule follow-up tasks with intelligent execution |
 | Set Timer | Schedule autonomous background tasks that run through the full agent loop |
 | Schedule Task | Queue immediate or delayed background work, non-blocking |
+| Monitor | Continuous recurring monitoring with full agent analysis each tick |
+| List Monitors | Show all active monitors with status and time remaining |
+| Stop Monitor | Cancel a running monitor |
 | Continue | Self-extend reasoning budget for complex multi-step analysis |
 | Learn Skill | Teach itself new behavioral instructions that persist permanently |
 | List Skills | Show all learned skills with usage stats |
@@ -279,8 +296,9 @@ The agent can chain up to 24 tool calls in a single request. For example, asking
 - **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
 - **Proactive behavior** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
 - **Self-evolving skills** — learns behavioral instructions from your interactions that persist permanently and get applied to every future conversation
+- **Continuous monitoring** — tell it to monitor a token or wallet, and it runs recurring full-intelligence checks with change detection on a configurable schedule
 - **Autonomous execution** — can schedule background tasks that run through the full agent loop without you waiting, then deliver results via notifications and the companion bubble
-- **Self-scheduling** — autonomous tasks can chain: a background task can schedule more background tasks, creating persistent monitoring loops
+- **Ask first, act second** — the agent suggests background work and monitoring when useful, but never schedules anything without your explicit confirmation
 - **Self-extending reasoning** — can expand its own step budget (up to 24 steps) for complex analysis instead of cutting short
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
 - **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
@@ -305,7 +323,7 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 urchinbot_v.001.zip
   urchinbot-extension/
     manifest.json       Chrome MV3 config
-    background.js       Service worker, agent loop, LLM, 27 tools, autonomous runner
+    background.js       Service worker, agent loop, LLM, 30 tools, autonomous runner, monitors
     content.js          Overlay UI, Shadow DOM, smart page context, result delivery
     styles.css          Host element styles
     popup.html          Toolbar bubble menu
@@ -330,7 +348,7 @@ urchinbot_v.001.zip
 
 ### Coming Soon
 
-- Telegram bot — full urchinbot agent in your DMs, same 27 tools and memory
+- Telegram bot — full urchinbot agent in your DMs, same 30 tools and memory
 - Skill sharing — export/import learned skills between users
 - Custom tool definitions — teach the agent to call new APIs
 - One-command site deploys with custom domains
