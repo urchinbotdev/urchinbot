@@ -158,8 +158,6 @@ Paste any Solana mint address and see:
 - **Send image** — right-click any image
 - **Capture page** — send full page context
 
-![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/thinking.png)
-
 ## Setup
 
 Click the urchinbot icon, then **Settings**.
@@ -228,6 +226,8 @@ forget the dark-mode-preference skill
 
 ## Agent Tools (30)
 
+![urchinbot Toolkit](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-tools.png)
+
 | Tool | What It Does |
 |------|-------------|
 | Web Search | Real-time search via DuckDuckGo |
@@ -269,87 +269,13 @@ Every request runs through a structured loop. The agent doesn't just call an LLM
 
 ### Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        UrchinLoop                           │
-│                                                             │
-│  ┌──────────┐   ┌───────────┐   ┌──────────┐   ┌────────┐  │
-│  │  CONTEXT  │──▶│   THINK   │──▶│   ACT    │──▶│OBSERVE │  │
-│  │  BUILDER  │   │ (chain of │   │ (30 tools│   │ (parse │  │
-│  │           │   │  thought) │   │  parallel│   │ results│  │
-│  └──────────┘   └───────────┘   │  execute) │   │  feed  │  │
-│       ▲                         └──────────┘   │  back)  │  │
-│       │              ▲                          └────┬───┘  │
-│       │              │                               │      │
-│       │              └───────── loop ◀───────────────┘      │
-│       │                                                     │
-│  ┌────┴────────────────────────────────────────────────┐    │
-│  │                   MEMORY LAYERS                      │    │
-│  │  condensed history · user profile · session summaries │   │
-│  │  manual memories · learned skills · recent chat       │   │
-│  └──────────────────────────────────────────────────────┘    │
-│                                                             │
-│  ┌──────────────────────────────────────────────────────┐    │
-│  │              BACKGROUND SYSTEMS                       │   │
-│  │  autonomous tasks · monitors · timers · skill learning│   │
-│  └──────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────┘
-```
+![UrchinLoop Architecture](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-architecture.png)
 
 ### The Loop
 
 Every time you send a message, UrchinLoop runs this cycle:
 
-```
-You send a message
-       │
-  ┌────▼────┐
-  │  LOAD   │  condensed history, user profile, session summaries,
-  │ MEMORY  │  saved memories, learned skills
-  └────┬────┘
-       │
-  ┌────▼────┐
-  │  BUILD  │  page URL, visible text, selected text, tweets, DEX pairs,
-  │ CONTEXT │  crypto links, form data, uploaded files, current project
-  └────┬────┘
-       │
-  ┌────▼────┐
-  │  AUTO-  │  identify page type (DexScreener, Birdeye, pump.fun, etc.),
-  │ DETECT  │  extract mint addresses, cashtags, prices from the page
-  └────┬────┘
-       │
-  ┌────▼────┐
-  │  ROUTE  │  simple question? → 1 step, fast reply
-  │         │  complex task?    → up to 24 steps, full reasoning
-  └────┬────┘
-       │
-  ┌────▼─────────────────────────────────────────┐
-  │              REASONING LOOP                   │
-  │                                               │
-  │  THINK ─▶ ACT ─▶ OBSERVE ─▶ DECIDE           │
-  │    │                           │               │
-  │    │    need more info?  ◀─────┘  (loop back)  │
-  │    │    have enough?     ──────▶  write answer  │
-  │    │    need more steps? ──────▶  self-extend   │
-  │    │                                           │
-  │  Tools fire in parallel when independent       │
-  │  Up to 24 chained steps per request            │
-  └────┬─────────────────────────────────────────┘
-       │
-  ┌────▼────┐
-  │ RESPOND │  final answer → user (streamed in real-time)
-  └────┬────┘
-       │
-  ┌────▼────┐
-  │  LEARN  │  background: save session summary, update user profile,
-  │         │  compress old history, auto-learn new skills
-  └────┬────┘
-       │
-  ┌────▼─────┐
-  │ SCHEDULE │  if needed: queue autonomous follow-up tasks,
-  │          │  set timers for future checks, chain monitoring jobs
-  └──────────┘
-```
+![UrchinLoop Reasoning Pipeline](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-flow.png)
 
 ### Smart Routing
 
@@ -400,6 +326,8 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 - **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
 
 ## Agent Memory
+
+![UrchinLoop Memory System](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-memory.png)
 
 The agent has a 6-layer memory system:
 
