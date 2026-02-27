@@ -1,6 +1,6 @@
 # urchinbot
 
-**urchinbot** — a local-first AI agent that lives in your browser (and soon, your Telegram). It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, runs autonomous background tasks, learns new skills over time, and remembers everything across sessions. Powered by UrchinLoop.
+**urchinbot** — a local-first AI agent that lives in your browser. It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, runs autonomous background tasks, monitors tokens continuously, learns new skills over time, and remembers everything across sessions. Powered by UrchinLoop — a custom multi-step reasoning engine with 30 tools.
 
 > Telegram bot coming soon. Same brain. Same tools. No extension needed.
 
@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.008.zip)
+1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.0.01.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
@@ -53,7 +53,7 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Self-evolving skills — learns your preferences and useful procedures over time
 - Self-extending reasoning — can expand its step budget for complex analysis (up to 24 steps)
 - Proactive briefings on open — price updates, wallet balances, active alerts
-- Background task results delivered via companion speech bubble + Chrome notifications
+- Background task results delivered via companion chat bubble + Chrome notifications
 - Notification badge on mascot for unread background results
 - Markdown-rendered responses with bold, links, lists, code
 - Inline clickable address cards — click any Solana address to scan
@@ -63,6 +63,19 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Parallel tool execution — multiple tools fire simultaneously
 - Smart self-routing — simple questions answered instantly
 - Plans multi-step tasks with up to 24 chained tool calls
+
+### Companion Mode
+
+A floating urchinbot mascot that follows you across every page. Chat without opening the full panel — your conversation stays synced everywhere.
+
+- **Draggable mascot** — drag the urchin anywhere on screen, position persists across pages
+- **Hover chat button** — hover over the mascot to reveal a quick-chat button without opening the full panel
+- **Unified chat history** — messages sent in companion mode appear in the Ask tab, and vice versa. One conversation, two views
+- **Chat bubble replies** — urchinbot replies in a compact scrollable box next to the mascot with a typewriter effect
+- **Dismissable messages** — close the reply bubble and it won't re-show the same message
+- **Click to open panel** — click the mascot to open the full urchinbot panel at any time
+- **Background result delivery** — autonomous task results appear in the companion bubble + notification badge on the mascot
+- **Always-on-top mascot** — the urchin stays visible above all reply bubbles and chat elements
 
 ### Continuous Monitoring
 
@@ -84,7 +97,7 @@ The agent can work while you're not watching — but only when you ask it to. It
 - **SCHEDULE_TASK** — queue immediate or delayed background work, non-blocking
 - **Suggest, don't force** — the agent will suggest background work when useful ("want me to keep monitoring this?") but never schedules it without your explicit confirmation
 - **Persistent queue** — tasks survive browser restarts, tracked as pending → running → done/failed
-- **Result delivery** — background results appear in chat with a purple separator, show in the companion speech bubble, trigger Chrome notifications, and display a red badge on the mascot
+- **Result delivery** — background results appear in chat with a purple separator, show in the companion bubble, trigger Chrome notifications, and display a red badge on the mascot
 
 ### Self-Evolving Skills
 
@@ -248,9 +261,38 @@ forget the dark-mode-preference skill
 
 ## How UrchinLoop Works
 
-UrchinLoop is the open-source agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, learns, and evolves.
+UrchinLoop is the custom agent runtime that powers urchinbot. It's not a chatbot wrapper — it's a multi-step reasoning engine that thinks, plans, acts, observes, learns, and evolves autonomously.
 
-Full technical documentation: [URCHINLOOP.md](https://github.com/urchinbotdev/urchinbot/blob/main/URCHINLOOP.md)
+Every request runs through a structured loop. The agent doesn't just call an LLM and return the response — it enters a cycle where it can chain up to 24 tool calls, reason about intermediate results, extend its own step budget, schedule follow-up work, and learn new skills from the interaction.
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        UrchinLoop                           │
+│                                                             │
+│  ┌──────────┐   ┌───────────┐   ┌──────────┐   ┌────────┐  │
+│  │  CONTEXT  │──▶│   THINK   │──▶│   ACT    │──▶│OBSERVE │  │
+│  │  BUILDER  │   │ (chain of │   │ (30 tools│   │ (parse │  │
+│  │           │   │  thought) │   │  parallel│   │ results│  │
+│  └──────────┘   └───────────┘   │  execute) │   │  feed  │  │
+│       ▲                         └──────────┘   │  back)  │  │
+│       │              ▲                          └────┬───┘  │
+│       │              │                               │      │
+│       │              └───────── loop ◀───────────────┘      │
+│       │                                                     │
+│  ┌────┴────────────────────────────────────────────────┐    │
+│  │                   MEMORY LAYERS                      │    │
+│  │  condensed history · user profile · session summaries │   │
+│  │  manual memories · learned skills · recent chat       │   │
+│  └──────────────────────────────────────────────────────┘    │
+│                                                             │
+│  ┌──────────────────────────────────────────────────────┐    │
+│  │              BACKGROUND SYSTEMS                       │   │
+│  │  autonomous tasks · monitors · timers · skill learning│   │
+│  └──────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ### The Loop
 
@@ -258,43 +300,93 @@ Every time you send a message, UrchinLoop runs this cycle:
 
 ```
 You send a message
-       |
-  [Load Memory] — condensed history, user profile, session summaries,
-                   saved memories, learned skills
-       |
-  [Build Context] — page URL, visible text, selected text, tweets, DEX pairs,
-                     crypto links, form data, uploaded files, current project
-       |
-  [Auto-Detect] — identify page type (DexScreener, Birdeye, pump.fun, etc.),
-                   extract mint addresses, cashtags, prices from the page
-       |
-  [THINK] — agent reasons internally (hidden from you):
-            "What does the user want? What tools do I need? What do I already know?"
-       |
-  [ACT] — call a tool (search, scan, screenshot, build, deploy, fetch, remember,
-           schedule background task, learn skill...)
-       |
-  [OBSERVE] — get the tool result back
-       |
-  [DECIDE] — need more info? loop back to THINK > ACT > OBSERVE (up to 24 steps)
-             have enough? write the final answer
-       |
-  [RESPOND] — send the answer back to you
-       |
-  [LEARN] — background: save session summary, update user profile,
-            compress old history, auto-learn new skills
-       |
-  [SCHEDULE] — if needed: queue autonomous follow-up tasks,
-               set timers for future checks, chain monitoring jobs
+       │
+  ┌────▼────┐
+  │  LOAD   │  condensed history, user profile, session summaries,
+  │ MEMORY  │  saved memories, learned skills
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │  BUILD  │  page URL, visible text, selected text, tweets, DEX pairs,
+  │ CONTEXT │  crypto links, form data, uploaded files, current project
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │  AUTO-  │  identify page type (DexScreener, Birdeye, pump.fun, etc.),
+  │ DETECT  │  extract mint addresses, cashtags, prices from the page
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │  ROUTE  │  simple question? → 1 step, fast reply
+  │         │  complex task?    → up to 24 steps, full reasoning
+  └────┬────┘
+       │
+  ┌────▼─────────────────────────────────────────┐
+  │              REASONING LOOP                   │
+  │                                               │
+  │  THINK ─▶ ACT ─▶ OBSERVE ─▶ DECIDE           │
+  │    │                           │               │
+  │    │    need more info?  ◀─────┘  (loop back)  │
+  │    │    have enough?     ──────▶  write answer  │
+  │    │    need more steps? ──────▶  self-extend   │
+  │    │                                           │
+  │  Tools fire in parallel when independent       │
+  │  Up to 24 chained steps per request            │
+  └────┬─────────────────────────────────────────┘
+       │
+  ┌────▼────┐
+  │ RESPOND │  final answer → user (streamed in real-time)
+  └────┬────┘
+       │
+  ┌────▼────┐
+  │  LEARN  │  background: save session summary, update user profile,
+  │         │  compress old history, auto-learn new skills
+  └────┬────┘
+       │
+  ┌────▼─────┐
+  │ SCHEDULE │  if needed: queue autonomous follow-up tasks,
+  │          │  set timers for future checks, chain monitoring jobs
+  └──────────┘
 ```
 
-The agent can chain up to 24 tool calls in a single request. For example, asking "compare these 3 tokens and check the deployer wallets" might trigger: MULTI_SCAN then GET_WALLET_BALANCE then GET_WALLET_HISTORY then WEB_SEARCH then final analysis — and then schedule a re-check in 30 minutes.
+### Smart Routing
+
+Before entering the reasoning loop, UrchinLoop classifies the request:
+
+- **Quick reply** (1 step) — greetings, simple questions, memory lookups
+- **Standard** (3 steps) — single tool tasks like price checks or web searches
+- **Deep** (8+ steps) — multi-tool analysis, comparisons, research chains
+
+The agent can also self-extend its step budget mid-loop using the CONTINUE tool, up to a maximum of 24 steps.
+
+### Parallel Tool Execution
+
+When the agent needs multiple independent pieces of data, it fires tools in parallel. A single THINK step can emit multiple tool calls:
+
+```
+THINK: "I need the token price, DexScreener data, and deployer wallet info"
+  ├── GET_TOKEN_PRICE (fires)
+  ├── DEX_DATA (fires)
+  └── GET_WALLET_BALANCE (fires)
+       all results return → next THINK step
+```
+
+### Autonomous Execution
+
+UrchinLoop doesn't just respond — it can schedule future work:
+
+- **Timers** — `SET_TIMER` schedules a full agent loop to run later. When the alarm fires, UrchinLoop spins up, runs the task with all 30 tools, and pushes the result back to you
+- **Monitors** — `MONITOR` creates a recurring alarm. Every tick runs a full loop with the monitoring instructions, compares against previous results, and alerts on changes
+- **Background tasks** — `SCHEDULE_TASK` queues immediate non-blocking work so the agent can do research while you keep browsing
+- **Self-continuation** — the agent can extend its own reasoning with `CONTINUE` when it needs more steps
+
+All autonomous tasks run in the Chrome service worker. Results are delivered via Chrome notifications, the companion chat bubble, and the Ask tab thread.
 
 ### What Makes It Smart
 
 - **Mandatory chain-of-thought** — the agent thinks before every action, planning its approach in hidden reasoning blocks
 - **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
-- **Proactive behavior** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
+- **Proactive suggestions** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
 - **Self-evolving skills** — learns behavioral instructions from your interactions that persist permanently and get applied to every future conversation
 - **Continuous monitoring** — tell it to monitor a token or wallet, and it runs recurring full-intelligence checks with change detection on a configurable schedule
 - **Autonomous execution** — can schedule background tasks that run through the full agent loop without you waiting, then deliver results via notifications and the companion bubble
@@ -303,6 +395,7 @@ The agent can chain up to 24 tool calls in a single request. For example, asking
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
 - **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
 - **Non-blocking memory** — memory updates and skill learning happen in the background after the response, so you never wait
+- **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
 
 ## Agent Memory
 
@@ -323,12 +416,14 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 urchinbot_v.001.zip
   urchinbot-extension/
     manifest.json       Chrome MV3 config
-    background.js       Service worker, agent loop, LLM, 30 tools, autonomous runner, monitors
-    content.js          Overlay UI, Shadow DOM, smart page context, result delivery
+    background.js       Service worker — UrchinLoop engine, LLM calls, 30 tools,
+                        autonomous task runner, monitor scheduler, skill manager
+    content.js          Overlay UI — Shadow DOM panel, companion mode, speech bubble,
+                        smart page context, chat thread, result delivery
     styles.css          Host element styles
     popup.html          Toolbar bubble menu
     popup.js            Popup logic
-    options.html        Settings page
+    options.html        Settings page (provider, model, RPC, Netlify token)
     options.js          Settings save/load, model picker
     urchin.png          Logo
     icons/              16, 48, 128px toolbar icons
