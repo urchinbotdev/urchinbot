@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.0.01.zip)
+1. [Download urchinbot_v0.08.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.08.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
