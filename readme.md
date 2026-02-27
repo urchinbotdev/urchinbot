@@ -51,7 +51,8 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Scheduled reminders with intelligent execution — reminders run through the full agent loop
 - Autonomous background tasks — schedule work that runs without you waiting
 - Self-scheduling — the agent can queue its own follow-up tasks and monitoring chains
-- Self-evolving skills — learns your preferences, scores skill quality, and auto-prunes bad ones
+- Self-evolving skills — learns your preferences, scores skill quality, reads satisfaction signals, and auto-prunes bad ones
+- Goal decomposition — automatically breaks complex multi-phase requests into ordered subtask chains with dependency tracking
 - Self-extending reasoning — can expand its step budget for complex analysis (up to 24 steps)
 - Proactive briefings on open — price updates, wallet balances, active alerts
 - Background task results delivered via companion chat bubble + Chrome notifications
@@ -102,21 +103,32 @@ The agent can work while you're not watching — but only when you ask it to. It
 
 ### Self-Evolving Skills
 
-The agent gets smarter the more you use it. It learns behavioral skills, scores their effectiveness, and auto-prunes ones that don't help.
+The agent gets smarter the more you use it. It learns behavioral skills, scores their effectiveness using multiple signal sources, and auto-prunes ones that don't help.
 
 - **Manual learning** — tell it a preference or correct it, and it saves a skill automatically
 - **Auto-learning** — every 7th conversation, analyzes recent interactions for learnable patterns
 - **Skill scoring** — every skill has a quality score (0-100) updated via exponential moving average
 - **Self-evaluation** — every 10th conversation, the agent evaluates whether active skills actually helped and adjusts scores
+- **Implicit satisfaction signals** — detects corrections ("that's wrong"), frustration ("try again"), praise ("perfect"), and conversation length to nudge skill scores up or down every turn
 - **Auto-pruning** — skills scoring below 10 after 2+ evaluations are deleted; unused skills older than 30 days are cleaned up
 - **Skill injection** — only skills above the score threshold are loaded into conversation context
 - **Skill management** — ask "what have you learned?" to see all skills with scores, or tell it to forget one
-- **Usage tracking** — each skill tracks usage count, score, and evaluation history
+- **Usage tracking** — each skill tracks usage count, score, signal count, and evaluation history
 - **Examples of learned skills:**
   - "Always build websites with dark mode as default"
   - "When scanning tokens, also fetch DexScreener data and check the deployer wallet"
   - "User prefers concise answers without emojis"
   - "For memecoins, always check Twitter sentiment first"
+
+### Goal Decomposition
+
+When you send a complex multi-phase request, the agent automatically detects it, plans subtasks, and executes them in dependency order.
+
+- **Automatic detection** — triggers when your message contains multiple independent phases (e.g. "research X, then build a site about it, then deploy it")
+- **Dependency tracking** — subtasks declare which prior steps they need results from; the orchestrator passes outputs forward
+- **Recursive execution** — each subtask runs through the full UrchinLoop with its own reasoning steps and tool access
+- **Synthesis** — after all subtasks complete, the agent merges results into a single coherent response
+- **Graceful fallback** — if decomposition fails or isn't needed, the request runs through the normal reasoning loop
 
 ### Site Builder (Build Tab)
 
@@ -319,7 +331,8 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 - **Mandatory chain-of-thought** — the agent thinks before every action, planning its approach in hidden reasoning blocks
 - **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
 - **Proactive suggestions** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
-- **Self-evolving skills** — learns behavioral instructions from your interactions, scores their effectiveness, and auto-prunes low-quality ones
+- **Self-evolving skills** — learns behavioral instructions from your interactions, scores their effectiveness via LLM evaluation and implicit satisfaction signals, and auto-prunes low-quality ones
+- **Goal decomposition** — detects multi-phase requests, plans subtask chains with dependencies, executes each through the full loop, and synthesizes a unified response
 - **Continuous monitoring** — tell it to monitor a token or wallet, and it runs recurring full-intelligence checks with change detection on a configurable schedule
 - **Autonomous execution** — can schedule background tasks that run through the full agent loop without you waiting, then deliver results via notifications and the companion bubble
 - **Ask first, act second** — the agent suggests background work and monitoring when useful, but never schedules anything without your explicit confirmation
@@ -327,7 +340,7 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
 - **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
 - **Relevance-filtered memory** — only memories and session summaries relevant to your current message are injected, preventing context rot as memory grows
-- **Non-blocking memory** — memory updates, skill learning, and skill evaluation happen in the background after the response, so you never wait
+- **Non-blocking memory** — memory updates, skill learning, skill evaluation, and satisfaction signal processing happen in the background after the response, so you never wait
 - **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
 
 ## Agent Memory
