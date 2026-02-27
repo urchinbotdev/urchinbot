@@ -1,6 +1,6 @@
-# Urchinbot
+# urchinbot
 
-**urchinbot** — a local-first AI agent that lives in your browser (and soon, your Telegram). It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, manages your Netlify sites, and remembers everything across sessions. Powered by UrchinLoop.
+**urchinbot** — a local-first AI agent that lives in your browser (and soon, your Telegram). It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, and remembers everything across sessions. Powered by UrchinLoop.
 
 > Telegram bot coming soon. Same brain. Same tools. No extension needed.
 
@@ -12,11 +12,11 @@
 
 **Chrome Web Store:**
 
-> Coming soon !
+> Coming soon!
 
 **Manual install:**
 
-1. [Download urchinbot_v.006](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.006.zip)
+1. [Download urchinbot_v.001.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.001.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
@@ -28,30 +28,51 @@
 
 ### Agent Chat (Ask Tab)
 
-A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 16 tools, and remembers everything across sessions.
+A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 21 tools, and remembers everything across sessions.
 
 - Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
 - Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
 - Searches the web for real-time prices, news, and project info
 - Takes screenshots and visually analyzes pages
-- Checks live Solana token prices via Jupiter
+- Reverse image search — identifies people, memes, logos on screen via vision + web search
+- Checks live Solana token prices via Jupiter with price change tracking
+- DexScreener API integration — volume, liquidity, pair age, FDV
+- Token risk scoring (1-100) with breakdown on every scan
+- On-chain cross-referencing — detects holder overlaps between scanned tokens
 - Scans any wallet for SOL balance, token holdings, and transaction history
 - Compares multiple tokens side-by-side for safety
 - Reads any URL you paste and summarizes it
+- Semantic memory search — fuzzy recall across all saved info
 - Remembers your wallets, preferences, and past conversations permanently
 - Builds, edits, and deploys websites directly from chat
 - Lists and deletes your Netlify sites from chat
+- Price and wallet alerts with Chrome notifications
+- Scheduled reminders — "remind me to check this in 2 hours"
+- Proactive briefings on open — price updates, wallet balances, active alerts
+- Markdown-rendered responses with bold, links, lists, code
+- Inline clickable address cards — click any Solana address to scan
+- Conversation retry — re-run any response with one click
+- Export chat history as Markdown
+- Streaming responses — see text appear in real-time
+- Parallel tool execution — multiple tools fire simultaneously
+- Smart self-routing — simple questions answered instantly
 - Plans multi-step tasks with up to 12 chained tool calls
 
 ### Site Builder (Build Tab)
 
-Describe a website in plain text and get a full static site (HTML + CSS + JS) with self-critique quality review.
+A full website workspace. Describe a site, build it, then keep editing it with follow-up prompts and push updates to your live Netlify URL — all without leaving the extension.
 
-- AI critic scores the design and auto-fixes issues before delivery
+- **Build from a prompt** — describe what you want and get a full static site (HTML + CSS + JS) with AI self-critique
+- **Edit with prompts** — after building, type follow-up changes like "make the header purple" or "add a contact form" and the AI rewrites your code
+- **Live site tracking** — once deployed, your Netlify URL stays pinned at the top with a green LIVE indicator. Every edit can be pushed to the same URL
+- **Edit and Push Live** — one-click to apply changes and immediately update your live site
+- **Start fresh anytime** — click "+ New" to wipe the workspace and build something new
+- **Edit history** — see all the changes you've made as chips above the edit prompt
 - Upload images from your computer or grab them from any page
 - Grabbed images are embedded directly into the built site
-- Preview inline, download as ZIP, or deploy to Netlify in one click
+- Preview inline, download as ZIP, or deploy to Netlify
 - Manage all your Netlify sites — view, visit, or bulk-delete old deploys
+- Collapsible source file viewer with per-file copy buttons
 
 ### Token Deployer (Deploy Tab)
 
@@ -69,6 +90,8 @@ Paste any Solana mint address and see:
 
 - Top 10 holders with ownership percentages
 - Holder concentration analysis
+- Risk score (1-100) with breakdown
+- Cross-reference with previous scans — flag shared holders
 - Fresh wallet flags (potential sybil/rug signals)
 - Direct links to Solscan
 
@@ -93,6 +116,8 @@ Powers all AI features. Choose one:
 | Anthropic | https://console.anthropic.com/settings/keys | claude-sonnet-4-20250514 |
 | OpenAI Compatible | Your provider's dashboard | Any chat model |
 
+**Faster replies?** Use **gpt-4o-mini** (OpenAI) or **Claude Opus 4.6** (Anthropic) in Settings for snappier responses.
+
 For OpenAI Compatible providers (Groq, Together, Ollama, etc.), also set the base URL.
 
 ### Solana RPC (optional)
@@ -106,7 +131,7 @@ Required for token scanning, wallet checks, and transaction history.
 
 ### Netlify Token (optional)
 
-Required for one-click web deploy and site management.
+Required for one-click web deploy, live site updates, and site management.
 
 1. Go to https://app.netlify.com/user/applications#personal-access-tokens
 2. Create a new token named `urchinbot`
@@ -122,43 +147,51 @@ what's the price of JUP?
 check wallet 7xKX... balance and recent transactions
 compare these tokens: MINT1, MINT2, MINT3
 take a screenshot and tell me what you see
+who are these people in this image?
+reverse image search this meme
 read this URL: https://example.com/article
 build me a crypto dashboard with dark theme
+make the hero section bigger and add animations
 deploy my site to netlify
+edit the footer and push it live
 show me my netlify sites
 delete the old ones
-change the hero section to a gradient background
 deploy a token called DogWifHat with ticker WIF
 remember my wallet is 7xKX...
 what do you remember about me?
 ```
 
-## Agent Tools (16)
+## Agent Tools (21)
 
 | Tool | What It Does |
 |------|-------------|
 | Web Search | Real-time search via DuckDuckGo |
 | Screenshot | Captures and visually analyzes current page |
+| Reverse Image Search | Identifies people, memes, logos via vision + web search |
 | Fetch URL | Read and summarize any webpage |
-| Token Price | Live Solana token price via Jupiter |
+| Token Price | Live Solana token price via Jupiter + price change tracking |
+| DexScreener Data | Structured market data — volume, liquidity, pair age, FDV |
 | Wallet Balance | SOL + top token holdings via RPC |
 | Wallet History | Recent transaction history for any wallet |
-| Token Scan | Top holders, concentration, fresh wallet flags |
+| Token Scan | Top holders, concentration, risk score, cross-referencing |
 | Multi-Scan | Compare up to 5 tokens side-by-side for safety |
 | Detect Mints | Extract Solana addresses from any text |
 | Build Site | Generate full static website with AI self-critique |
-| Edit Site | Modify existing site via chat |
-| Deploy Site | Push current site to Netlify from chat |
+| Edit Site | Modify existing site with follow-up prompts |
+| Deploy Site | Push current site to Netlify (new or update existing) |
 | List Sites | Show all your Netlify sites |
 | Delete Site | Remove a Netlify site by ID |
 | Token Launch | Prepare pump.fun launch packet + auto-fill |
 | Memory | Save/recall info across sessions (REMEMBER/RECALL) |
+| Search Memory | Fuzzy keyword search across all saved memories |
+| Set Alert | Price and wallet alerts with Chrome notifications |
+| Remind Me | Schedule follow-up tasks for later |
 
 ## How UrchinLoop Works
 
 UrchinLoop is the open-source agent runtime that powers urchinbot. It's not a chatbot — it's a reasoning loop that thinks, plans, acts, and learns.
 
-Full technical documentation: [URCHINLOOP.md](https://github.com/urchinbotdev/urchinbot/blob/main/urchinloop.md)
+Full technical documentation: [URCHINLOOP.md](https://github.com/urchinbotdev/urchinbot/blob/main/URCHINLOOP.md)
 
 ### The Loop
 
@@ -199,6 +232,7 @@ The agent can chain up to 12 tool calls in a single request. For example, asking
 - **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
 - **Proactive behavior** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
+- **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
 - **Non-blocking memory** — memory updates happen in the background after the response, so you never wait
 
 ## Agent Memory
@@ -219,7 +253,7 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 urchinbot_v.001.zip
   urchinbot-extension/
     manifest.json       Chrome MV3 config
-    background.js       Service worker, agent loop, LLM, 16 tools
+    background.js       Service worker, agent loop, LLM, 21 tools
     content.js          Overlay UI, Shadow DOM, smart page context
     styles.css          Host element styles
     popup.html          Toolbar bubble menu
@@ -243,15 +277,14 @@ urchinbot_v.001.zip
 
 ### Coming Soon
 
-- Telegram bot — full urchinbot agent in your DMs, same 16 tools and memory
+- Telegram bot — full urchinbot agent in your DMs, same 21 tools and memory
 - Upgraded agent reasoning — deeper multi-step planning, smarter tool selection
 - One-command site deploys with custom domains
 - Token launch automation improvements
 
 ### Future
 
--Updates coming Soon!
-
+- Updates coming soon!
 
 ## Disclaimers
 
