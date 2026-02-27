@@ -42,7 +42,7 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Scans any wallet for SOL balance, token holdings, and transaction history
 - Compares multiple tokens side-by-side for safety
 - Reads any URL you paste and summarizes it
-- Semantic memory search — fuzzy recall across all saved info
+- Semantic memory search — embeddings-based recall with cosine similarity (keyword fallback)
 - Remembers your wallets, preferences, and past conversations permanently
 - Builds, edits, and deploys websites directly from chat
 - Lists and deletes your Netlify sites from chat
@@ -50,7 +50,7 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Scheduled reminders with intelligent execution — reminders run through the full agent loop
 - Autonomous background tasks — schedule work that runs without you waiting
 - Self-scheduling — the agent can queue its own follow-up tasks and monitoring chains
-- Self-evolving skills — learns your preferences and useful procedures over time
+- Self-evolving skills — learns your preferences, scores skill quality, and auto-prunes bad ones
 - Self-extending reasoning — can expand its step budget for complex analysis (up to 24 steps)
 - Proactive briefings on open — price updates, wallet balances, active alerts
 - Background task results delivered via companion chat bubble + Chrome notifications
@@ -101,13 +101,16 @@ The agent can work while you're not watching — but only when you ask it to. It
 
 ### Self-Evolving Skills
 
-The agent gets smarter the more you use it. It learns behavioral skills that persist permanently and get applied to every future conversation.
+The agent gets smarter the more you use it. It learns behavioral skills, scores their effectiveness, and auto-prunes ones that don't help.
 
 - **Manual learning** — tell it a preference or correct it, and it saves a skill automatically
 - **Auto-learning** — every 7th conversation, analyzes recent interactions for learnable patterns
-- **Skill injection** — all learned skills are loaded into every conversation context
-- **Skill management** — ask "what have you learned?" to see all skills, or tell it to forget one
-- **Usage tracking** — each skill tracks how many times it's been applied
+- **Skill scoring** — every skill has a quality score (0-100) updated via exponential moving average
+- **Self-evaluation** — every 10th conversation, the agent evaluates whether active skills actually helped and adjusts scores
+- **Auto-pruning** — skills scoring below 10 after 2+ evaluations are deleted; unused skills older than 30 days are cleaned up
+- **Skill injection** — only skills above the score threshold are loaded into conversation context
+- **Skill management** — ask "what have you learned?" to see all skills with scores, or tell it to forget one
+- **Usage tracking** — each skill tracks usage count, score, and evaluation history
 - **Examples of learned skills:**
   - "Always build websites with dark mode as default"
   - "When scanning tokens, also fetch DexScreener data and check the deployer wallet"
@@ -248,7 +251,7 @@ forget the dark-mode-preference skill
 | Delete Site | Remove a Netlify site by ID |
 | Token Launch | Prepare pump.fun launch packet + auto-fill |
 | Memory | Save/recall info across sessions (REMEMBER/RECALL) |
-| Search Memory | Fuzzy keyword search across all saved memories |
+| Search Memory | Semantic search via embeddings + cosine similarity (keyword fallback) |
 | Set Alert | Price and wallet alerts with Chrome notifications |
 | Remind Me | Schedule follow-up tasks with intelligent execution |
 | Set Timer | Schedule autonomous background tasks that run through the full agent loop |
@@ -315,14 +318,14 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 - **Mandatory chain-of-thought** — the agent thinks before every action, planning its approach in hidden reasoning blocks
 - **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
 - **Proactive suggestions** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
-- **Self-evolving skills** — learns behavioral instructions from your interactions that persist permanently and get applied to every future conversation
+- **Self-evolving skills** — learns behavioral instructions from your interactions, scores their effectiveness, and auto-prunes low-quality ones
 - **Continuous monitoring** — tell it to monitor a token or wallet, and it runs recurring full-intelligence checks with change detection on a configurable schedule
 - **Autonomous execution** — can schedule background tasks that run through the full agent loop without you waiting, then deliver results via notifications and the companion bubble
 - **Ask first, act second** — the agent suggests background work and monitoring when useful, but never schedules anything without your explicit confirmation
 - **Self-extending reasoning** — can expand its own step budget (up to 24 steps) for complex analysis instead of cutting short
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
 - **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
-- **Non-blocking memory** — memory updates and skill learning happen in the background after the response, so you never wait
+- **Non-blocking memory** — memory updates, skill learning, and skill evaluation happen in the background after the response, so you never wait
 - **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
 
 ## Agent Memory
@@ -336,7 +339,7 @@ The agent has a 6-layer memory system:
 3. **User Profile** — auto-extracted permanent knowledge (wallets, preferences, projects)
 4. **Session Summaries** — detailed bullet points from past sessions (last 20 kept)
 5. **Manual Memories** — anything you tell it to remember
-6. **Learned Skills** — self-evolving behavioral instructions (permanent, injected into every conversation)
+6. **Learned Skills** — self-evolving behavioral instructions, scored 0-100, auto-pruned when ineffective
 
 Click the **brain icon** in the Ask tab to view or wipe all memory.
 
