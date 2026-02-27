@@ -43,6 +43,7 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Compares multiple tokens side-by-side for safety
 - Reads any URL you paste and summarizes it
 - Semantic memory search — embeddings-based recall with cosine similarity (keyword fallback)
+- Relevance-filtered memory — only injects memories relevant to your current message, not everything
 - Remembers your wallets, preferences, and past conversations permanently
 - Builds, edits, and deploys websites directly from chat
 - Lists and deletes your Netlify sites from chat
@@ -325,6 +326,7 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 - **Self-extending reasoning** — can expand its own step budget (up to 24 steps) for complex analysis instead of cutting short
 - **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
 - **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
+- **Relevance-filtered memory** — only memories and session summaries relevant to your current message are injected, preventing context rot as memory grows
 - **Non-blocking memory** — memory updates, skill learning, and skill evaluation happen in the background after the response, so you never wait
 - **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
 
@@ -336,10 +338,26 @@ The agent has a 6-layer memory system:
 
 1. **Condensed History** — compressed narrative of all past conversations (never expires)
 2. **Recent Chat** — last 30 messages at full fidelity
-3. **User Profile** — auto-extracted permanent knowledge (wallets, preferences, projects)
+3. **User Profile** — auto-extracted permanent knowledge (wallets, preferences, projects), capped at 50 keys
 4. **Session Summaries** — detailed bullet points from past sessions (last 20 kept)
-5. **Manual Memories** — anything you tell it to remember
+5. **Manual Memories** — anything you tell it to remember (capped at 100, oldest evicted)
 6. **Learned Skills** — self-evolving behavioral instructions, scored 0-100, auto-pruned when ineffective
+
+### Context Rot Prevention
+
+Memory injection is relevance-filtered to prevent context rot — the gradual degradation that happens when too much stale or irrelevant info floods the LLM context:
+
+- **Relevance filtering** — when you have more than a few memories, only the ones semantically relevant to your current message are injected. Uses the same embeddings infrastructure as Search Memory. Falls back to keyword matching for Anthropic users.
+- **Profile cap** — user profile auto-prunes to the newest 50 keys
+- **Memory cap** — manual memories are capped at 100 entries; oldest by timestamp are evicted when the cap is exceeded
+- **Skill scoring + pruning** — skills below score 15 are excluded from context; skills below 10 after 2+ evaluations are deleted
+- **Session rotation** — session summaries capped at 20, oldest deleted first
+- **Condensation** — old conversations are LLM-compressed into a dense 4000-char narrative
+- **Hard context budget** — all injected context is trimmed to 80K chars max to prevent window overflow
+- **Tool result summarization** — large tool outputs are capped and truncated per-tool
+- **Embedding cache** — memory embeddings cached (max 300) for fast re-use; invalidated when memories are overwritten
+
+The most recent session summary is always included regardless of relevance score to maintain conversational continuity.
 
 Click the **brain icon** in the Ask tab to view or wipe all memory.
 
