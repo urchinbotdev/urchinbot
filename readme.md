@@ -242,7 +242,7 @@ forget the dark-mode-preference skill
 
 ## Agent Tools (30)
 
-![urchinbot Toolkit](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-tools.png)
+![urchinbot Toolkit](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-tools.png)
 
 | Tool | What It Does |
 |------|-------------|
@@ -285,13 +285,13 @@ Every request runs through a structured loop. The agent doesn't just call an LLM
 
 ### Architecture
 
-![UrchinLoop Architecture](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-architecture.png)
+![UrchinLoop Architecture](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-architecture.png)
 
 ### The Loop
 
 Every time you send a message, UrchinLoop runs this cycle:
 
-![UrchinLoop Reasoning Pipeline](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-flow.png)
+![UrchinLoop Reasoning Pipeline](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-flow.png)
 
 ### Smart Routing
 
@@ -345,7 +345,7 @@ All autonomous tasks run in the Chrome service worker. Results are delivered via
 
 ## Agent Memory
 
-![UrchinLoop Memory System](https://raw.githubusercontent.com/urchinbotdev/urchinbot/main/diagrams/urchinloop-memory.png)
+![UrchinLoop Memory System](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-memory.png)
 
 The agent has a 6-layer memory system:
 
