@@ -1,12 +1,12 @@
 # urchinbot
 
-**urchinbot** — a local-first AI agent that lives in your browser. It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, builds and deploys websites, runs autonomous background tasks, monitors tokens continuously, learns new skills over time, tracks multi-session project goals, and remembers everything across sessions. Powered by UrchinLoop — a custom multi-step reasoning engine with 33 tools.
+**urchinbot** — a local-first AI agent that lives in your browser. It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, tracks wallet activity with zero-LLM-cost polling, shows DexScreener charts inline, builds and deploys websites, runs autonomous background tasks, monitors tokens continuously, learns new skills over time, tracks multi-session project goals, delivers configurable daily digests, and remembers everything across sessions. Powered by UrchinLoop — a custom multi-step reasoning engine with 42 tools.
 
 > Telegram bot coming soon. Same brain. Same tools. No extension needed.
 
 **Follow:** [x.com/urchinbot](https://x.com/urchinbot)
 
-![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbanner.png)
+![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
 
 ## Install
 
@@ -16,7 +16,7 @@
 
 **Manual install:**
 
-1. [Download urchinbot_v0.092.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.092.zip)
+1. [Download urchinbot_v0.08.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.08.zip)
 2. Unzip it
 3. Open Chrome and go to `chrome://extensions`
 4. Turn on **Developer mode** (top right)
@@ -28,7 +28,7 @@
 
 ### Agent Chat (Ask Tab)
 
-A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 33 tools, runs autonomous background tasks, monitors tokens continuously, learns new skills, tracks project goals across sessions, and remembers everything.
+A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 42 tools, runs autonomous background tasks, monitors tokens continuously, tracks wallet activity, delivers daily PnL digests, shows DexScreener charts inline, learns new skills, tracks project goals across sessions, and remembers everything.
 
 - Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
 - Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
@@ -36,7 +36,7 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Takes screenshots and visually analyzes pages
 - Reverse image search — identifies people, memes, logos on screen via vision + web search
 - Checks live Solana token prices via Jupiter with price change tracking
-- DexScreener API integration — volume, liquidity, pair age, FDV
+- DexScreener API integration — volume, liquidity, pair age, FDV, multi-timeframe price changes (5m/1h/6h/24h), buy/sell txn counts, and inline chart preview images
 - Token risk scoring (1-100) with breakdown on every scan
 - On-chain cross-referencing — detects holder overlaps between scanned tokens
 - Scans any wallet for SOL balance, token holdings, and transaction history
@@ -55,6 +55,10 @@ A full AI agent overlay on any webpage. It reasons step-by-step with mandatory c
 - Explicit user feedback — thumbs up/down buttons on every response directly adjust skill scores
 - Goal decomposition — automatically breaks complex multi-phase requests into ordered subtask chains with dependency tracking
 - Long-term project planning — set multi-session goals with milestones, track progress across conversations
+- Wallet PnL tracker — full portfolio report for any Solana wallet with SOL + all token holdings valued in USD, delta since last check
+- Wallet watchlist — track up to 20 wallets persistently, included in daily digest
+- Wallet activity tracker — zero-LLM-cost polling detects new token buys, sells, and large SOL moves on watched wallets, auto-pings on significant activity
+- Configurable daily digest — user picks the time, poll interval, and notification threshold; morning briefing with PnL changes and wallet activity summary
 - Self-extending reasoning — can expand its step budget for complex analysis (up to 24 steps)
 - Proactive briefings on open — price updates, wallet balances, active alerts
 - Background task results delivered via companion chat bubble + Chrome notifications
@@ -143,6 +147,18 @@ The agent can track multi-session goals, milestones, and progress — so complex
 - **GET_GOALS** — retrieve all active projects with their current status
 - **Context injection** — active project plans are automatically loaded into every conversation so the agent always knows what you're working on
 - **Auto-cap** — max 10 active projects, oldest evicted when exceeded
+
+### Wallet PnL & Activity Tracking
+
+Track wallets, get portfolio reports, and receive automatic notifications when watched wallets make significant moves — all with zero LLM cost for the polling.
+
+- **PNL_CHECK** — full portfolio report for any Solana wallet: SOL balance, all token holdings with live USD values via Jupiter, total portfolio value, and change since last check
+- **Wallet watchlist** — add up to 20 wallets with optional labels; watchlist persists across sessions
+- **Activity tracker** — polls watched wallets at your chosen interval (1-60 min) using only RPC + Jupiter price API (zero LLM calls). Detects new token buys, token sells, and large SOL transfers
+- **Smart notifications** — auto-pings you when a watched wallet makes a significant move (configurable USD threshold, default $10). Throttled to max 5 notifications per hour
+- **Activity log** — rolling buffer of 200 events queryable per wallet or across all wallets via WALLET_ACTIVITY
+- **Configurable daily digest** — fires at the exact time you choose (hour + minute). Runs PnL on all watchlist wallets, includes 24h activity summary, highlights biggest movers. One LLM call per digest
+- **User-driven config** — the bot always asks for your preferred digest time, polling interval, and notification threshold before setting anything up
 
 ### Explicit User Feedback
 
@@ -264,9 +280,15 @@ forget the dark-mode-preference skill
 set a goal: launch token landing page by Friday
 update goal 1 — milestone 2 done
 what are my active projects?
+check PnL for 7xKX...
+watch this wallet — label it "whale1"
+show my watchlist
+what has whale1 been doing?
+set up daily digest at 8:30am, check every 10 minutes, notify on $50+ buys
+show my digest settings
 ```
 
-## Agent Tools (33)
+## Agent Tools (42)
 
 ![urchinbot Toolkit](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-tools.png)
 
@@ -277,12 +299,19 @@ what are my active projects?
 | Reverse Image Search | Identifies people, memes, logos via vision + web search |
 | Fetch URL | Read and summarize any webpage |
 | Token Price | Live Solana token price via Jupiter + price change tracking |
-| DexScreener Data | Structured market data — volume, liquidity, pair age, FDV |
+| DexScreener Charts | Structured market data — price, 5m/1h/6h/24h changes, volume, liquidity, pair age, FDV, buy/sell txns, inline chart preview image |
 | Wallet Balance | SOL + top token holdings via RPC |
 | Wallet History | Recent transaction history for any wallet |
 | Token Scan | Top holders, concentration, risk score, cross-referencing |
 | Multi-Scan | Compare up to 5 tokens side-by-side for safety |
 | Detect Mints | Extract Solana addresses from any text |
+| PnL Check | Full portfolio report — SOL + all tokens valued in USD, delta since last check |
+| Watch Wallet | Add wallet to persistent watchlist (up to 20) with optional label |
+| Unwatch Wallet | Remove wallet from watchlist by address or label |
+| List Watchlist | Show all watched wallets |
+| Wallet Activity | Query recent tracked activity (buys, sells, SOL moves) per wallet or all |
+| Set Digest | Configure daily digest time, tracker poll interval, and notification threshold |
+| Get Digest Config | Show current digest and tracker settings |
 | Build Site | Generate full static website with AI self-critique |
 | Edit Site | Modify existing site with follow-up prompts |
 | Deploy Site | Push current site to Netlify (new or update existing) |
@@ -348,7 +377,7 @@ THINK: "I need the token price, DexScreener data, and deployer wallet info"
 
 UrchinLoop doesn't just respond — it can schedule future work:
 
-- **Timers** — `SET_TIMER` schedules a full agent loop to run later. When the alarm fires, UrchinLoop spins up, runs the task with all 33 tools, and pushes the result back to you
+- **Timers** — `SET_TIMER` schedules a full agent loop to run later. When the alarm fires, UrchinLoop spins up, runs the task with all 42 tools, and pushes the result back to you
 - **Monitors** — `MONITOR` creates a recurring alarm. Every tick runs a full loop with the monitoring instructions, compares against previous results, and alerts on changes
 - **Background tasks** — `SCHEDULE_TASK` queues immediate non-blocking work so the agent can do research while you keep browsing
 - **Self-continuation** — the agent can extend its own reasoning with `CONTINUE` when it needs more steps
@@ -410,8 +439,9 @@ Click the **brain icon** in the Ask tab to view or wipe all memory.
 urchinbot_v.001.zip
   urchinbot-extension/
     manifest.json       Chrome MV3 config
-    background.js       Service worker — UrchinLoop engine, LLM calls, 33 tools,
-                        autonomous task runner, monitor scheduler, skill manager
+    background.js       Service worker — UrchinLoop engine, LLM calls, 42 tools,
+                        autonomous task runner, monitor scheduler, skill manager,
+                        wallet activity tracker, daily digest
     content.js          Overlay UI — Shadow DOM panel, companion mode, speech bubble,
                         smart page context, chat thread, result delivery
     styles.css          Host element styles
@@ -429,7 +459,7 @@ urchinbot_v.001.zip
 - **Local-first** — all keys and data stay in chrome.storage.local on your machine
 - **No custodial keys** — never asks for or stores seed phrases or private keys
 - **No tracking** — zero analytics, zero telemetry, zero data collection
-- **External calls** — only to your configured LLM provider, Solana RPC, DuckDuckGo (search), Jupiter (prices), and Netlify (deploy)
+- **External calls** — only to your configured LLM provider, Solana RPC, DuckDuckGo (search), Jupiter (prices), DexScreener (charts/market data), and Netlify (deploy)
 - **Memory is local** — persistent memory, skills, and task queue stored in chrome.storage.local, never sent to external servers
 - **Autonomous tasks are local** — background tasks run in your browser's service worker, not on any remote server
 
@@ -437,7 +467,7 @@ urchinbot_v.001.zip
 
 ### Coming Soon
 
-- Telegram bot — full urchinbot agent in your DMs, same 33 tools and memory
+- Telegram bot — full urchinbot agent in your DMs, same 42 tools and memory
 - Skill sharing — export/import learned skills between users
 - Custom tool definitions — teach the agent to call new APIs
 - One-command site deploys with custom domains
