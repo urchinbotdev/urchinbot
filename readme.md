@@ -1,4 +1,4 @@
-# urchinbot
+<img width="1179" height="953" alt="image" src="https://github.com/user-attachments/assets/9d0e7efb-802c-447a-83a6-c40e71a9a740" /># urchinbot
 
 A local-first AI agent that lives in your browser. It thinks step-by-step, scans Solana tokens, tracks wallets, builds websites, and remembers everything — powered by **UrchinLoop**, a custom reasoning engine with 44 tools.
 
@@ -116,7 +116,7 @@ Results delivered via chat, companion bubble, and Chrome notifications.
 
 ### Self-Evolving Skills
 
-The agent learns from every interaction and gets better over time.
+The agent learns from every interaction and gets better over time. [Full skills guide →](docs/skills.md)
 
 - Saves preferences and patterns automatically
 - Every skill has a quality score (0-100) updated via evaluation + user feedback
