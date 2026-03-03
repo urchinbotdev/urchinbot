@@ -1,3 +1,5 @@
+# urchinbot
+
 A local-first AI agent that lives in your browser. It thinks step-by-step, scans Solana tokens, tracks wallets, builds websites, and remembers everything — powered by **UrchinLoop**, a custom reasoning engine with 44 tools.
 
 ![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
