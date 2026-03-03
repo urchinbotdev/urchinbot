@@ -116,7 +116,7 @@ Results delivered via chat, companion bubble, and Chrome notifications.
 
 ### Self-Evolving Skills
 
-The agent learns from every interaction and gets better over time. [Full skills guide →](docs/skills.md)
+The agent learns from every interaction and gets better over time. [Full skills guide →](https://github.com/urchinbotdev/urchinbot/blob/main/skills.md)
 
 - Saves preferences and patterns automatically
 - Every skill has a quality score (0-100) updated via evaluation + user feedback
