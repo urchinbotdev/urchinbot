@@ -1,252 +1,301 @@
 # urchinbot
 
-**urchinbot** — a local-first AI agent that lives in your browser. It thinks step-by-step, searches the web, scans Solana tokens, checks wallets, tracks wallet activity with zero-LLM-cost polling, shows DexScreener charts inline, builds and deploys websites, runs autonomous background tasks, monitors tokens continuously, learns new skills over time, tracks multi-session project goals, delivers configurable daily digests, and remembers everything across sessions. Powered by UrchinLoop — a custom multi-step reasoning engine with 42 tools.
-
-> Telegram bot coming soon. Same brain. Same tools. No extension needed.
-
-**Follow:** [x.com/urchinbot](https://x.com/urchinbot)
+A local-first AI agent that lives in your browser. It thinks step-by-step, scans Solana tokens, tracks wallets, builds websites, and remembers everything — powered by **UrchinLoop**, a custom reasoning engine with 44 tools.
 
 ![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
 
+[Website](https://urchinbot.fun) · [Twitter/X](https://x.com/urchinbot) · [GitHub](https://github.com/urchinbotdev/urchinbot)
+
+---
+
 ## Install
 
-**Chrome Web Store:**
+> Chrome Web Store — coming soon!
 
-> Coming soon!
-
-**Manual install:**
-
-1. [Download urchinbot_v0.092.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.092.zip)
+1. Download [urchinbot_v0.08.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.08.zip)
 2. Unzip it
-3. Open Chrome and go to `chrome://extensions`
-4. Turn on **Developer mode** (top right)
-5. Click **Load unpacked**
-6. Select the `urchinbot-extension` folder from the unzipped files
-7. Pin urchinbot from the puzzle piece icon in your toolbar
+3. Go to `chrome://extensions` → turn on **Developer mode**
+4. Click **Load unpacked** → select the `urchinbot-extension` folder
+5. Pin urchinbot from the puzzle piece icon
 
-## What It Does
+---
 
-### Agent Chat (Ask Tab)
+## Features
 
-A full AI agent overlay on any webpage. It reasons step-by-step with mandatory chain-of-thought, uses 42 tools, runs autonomous background tasks, monitors tokens continuously, tracks wallet activity, delivers daily PnL digests, shows DexScreener charts inline, learns new skills, tracks project goals across sessions, and remembers everything.
+### Agent Chat
 
-- Sees your current page, selected text, tweets, DEX pairs, and wallet addresses
-- Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan, Raydium)
-- Searches the web for real-time prices, news, and project info
-- Takes screenshots and visually analyzes pages
-- Reverse image search — identifies people, memes, logos on screen via vision + web search
-- Checks live Solana token prices via Jupiter with price change tracking
-- DexScreener API integration — volume, liquidity, pair age, FDV, multi-timeframe price changes (5m/1h/6h/24h), buy/sell txn counts, and inline chart preview images
-- Token risk scoring (1-100) with breakdown on every scan
-- On-chain cross-referencing — detects holder overlaps between scanned tokens
-- Scans any wallet for SOL balance, token holdings, and transaction history
-- Compares multiple tokens side-by-side for safety
-- Reads any URL you paste and summarizes it
-- Semantic memory search — embeddings-based recall with cosine similarity (keyword fallback)
-- Relevance-filtered memory — only injects memories relevant to your current message, not everything
-- Remembers your wallets, preferences, and past conversations permanently
-- Builds, edits, and deploys websites directly from chat
-- Lists and deletes your Netlify sites from chat
-- Price and wallet alerts with Chrome notifications
-- Scheduled reminders with intelligent execution — reminders run through the full agent loop
-- Autonomous background tasks — schedule work that runs without you waiting
-- Self-scheduling — the agent can queue its own follow-up tasks and monitoring chains
-- Self-evolving skills — learns your preferences, scores skill quality, reads satisfaction signals, and auto-prunes bad ones
-- Explicit user feedback — thumbs up/down buttons on every response directly adjust skill scores
-- Goal decomposition — automatically breaks complex multi-phase requests into ordered subtask chains with dependency tracking
-- Long-term project planning — set multi-session goals with milestones, track progress across conversations
-- Wallet PnL tracker — full portfolio report for any Solana wallet with SOL + all token holdings valued in USD, delta since last check
-- Wallet watchlist — track up to 20 wallets persistently, included in daily digest
-- Wallet activity tracker — zero-LLM-cost polling detects new token buys, sells, and large SOL moves on watched wallets, auto-pings on significant activity
-- Configurable daily digest — user picks the time, poll interval, and notification threshold; morning briefing with PnL changes and wallet activity summary
-- Self-extending reasoning — can expand its step budget for complex analysis (up to 24 steps)
-- Proactive briefings on open — price updates, wallet balances, active alerts
-- Background task results delivered via companion chat bubble + Chrome notifications
-- Notification badge on mascot for unread background results
-- Markdown-rendered responses with bold, links, lists, code
+Full AI agent overlay on any webpage — 44 tools, chain-of-thought reasoning, up to 24 chained tool calls per request.
+
+**Crypto Intelligence**
+- Live token prices via Jupiter with change tracking
+- DexScreener integration — volume, liquidity, FDV, 5m/1h/6h/24h price changes, inline chart previews
+- Token scanning — top holders, concentration, risk score (1-100), fresh wallet flags
+- Multi-token comparison — scan up to 5 tokens side-by-side
+- Cross-referencing — detects holder overlaps between scanned tokens
+- Wallet balance, token holdings, and transaction history
+- Auto-detects crypto pages (DexScreener, Birdeye, pump.fun, Jupiter, Solscan)
+
+**Web & Vision**
+- Real-time web search via DuckDuckGo
+- Screenshot capture and visual analysis
+- Reverse image search — identify people, memes, logos
+- Read and summarize any URL
+
+**Memory & Context**
+- Sees your current page, selected text, tweets, DEX pairs, wallet addresses
+- Semantic memory search with embeddings + cosine similarity
+- Relevance-filtered injection — only relevant memories loaded, not everything
+- Remembers wallets, preferences, and conversations permanently
+
+**Responses**
+- Markdown rendering with bold, links, lists, code
 - Inline clickable address cards — click any Solana address to scan
-- Thumbs up/down feedback — rate responses to improve skill quality over time
-- Conversation retry — re-run any response with one click
-- Export chat history as Markdown
-- Streaming responses — see text appear in real-time
-- Parallel tool execution — multiple tools fire simultaneously
-- Smart self-routing — simple questions answered instantly
-- Plans multi-step tasks with up to 24 chained tool calls
+- Streaming text in real-time
+- Thumbs up/down feedback on every response
+- Retry any response with one click
+- Export chat as Markdown
 
-### Companion Mode
-
-A floating urchinbot mascot that follows you across every page. Chat without opening the full panel — your conversation stays synced everywhere.
-
-- **Draggable mascot** — drag the urchin anywhere on screen, position persists across pages
-- **Hover chat button** — hover over the mascot to reveal a quick-chat button without opening the full panel
-- **Unified chat history** — messages sent in companion mode appear in the Ask tab, and vice versa. One conversation, two views
-- **Chat bubble replies** — urchinbot replies in a compact scrollable box next to the mascot with a typewriter effect
-- **Dismissable messages** — close the reply bubble and it won't re-show the same message
-- **Click to open panel** — click the mascot to open the full urchinbot panel at any time
-- **Background result delivery** — autonomous task results appear in the companion bubble + notification badge on the mascot
-- **Always-on-top mascot** — the urchin stays visible above all reply bubbles and chat elements
-
-### Continuous Monitoring
-
-Tell the agent to monitor a token or wallet, and it will run recurring full-intelligence checks on a schedule — not just dumb threshold alerts.
-
-- **MONITOR** — "monitor this token every 15 minutes" → recurring alarm → full agent loop with all tools each check → results delivered with change analysis
-- **Configurable interval** — minimum 5 minutes, default 15
-- **Auto-expiry** — monitors auto-stop after a set time (default 6 hours) to protect your API credits
-- **Smart change detection** — each check compares against previous results and highlights what changed
-- **Full tool access** — each monitor tick can scan tokens, check prices, query DexScreener, search the web, check wallets — whatever the instructions say
-- **LIST_MONITORS** — see all active monitors, checks run, time remaining
-- **STOP_MONITOR** — cancel any monitor at any time
-
-### Autonomous Background Tasks
-
-The agent can work while you're not watching — but only when you ask it to. It never schedules background work on its own.
-
-- **SET_TIMER** — "check this token in 30 minutes and analyze the change" → fires on schedule → full agent loop → result delivered
-- **SCHEDULE_TASK** — queue immediate or delayed background work, non-blocking
-- **Suggest, don't force** — the agent will suggest background work when useful ("want me to keep monitoring this?") but never schedules it without your explicit confirmation
-- **Persistent queue** — tasks survive browser restarts, tracked as pending → running → done/failed
-- **Result delivery** — background results appear in chat with a purple separator, show in the companion bubble, trigger Chrome notifications, and display a red badge on the mascot
-
-### Self-Evolving Skills
-
-The agent gets smarter the more you use it. It learns behavioral skills, scores their effectiveness using multiple signal sources, and auto-prunes ones that don't help.
-
-- **Manual learning** — tell it a preference or correct it, and it saves a skill automatically
-- **Auto-learning** — every 7th conversation, analyzes recent interactions for learnable patterns
-- **Skill scoring** — every skill has a quality score (0-100) updated via exponential moving average
-- **Self-evaluation** — every 10th conversation, the agent evaluates whether active skills actually helped and adjusts scores
-- **Implicit satisfaction signals** — detects corrections ("that's wrong"), frustration ("try again"), praise ("perfect"), and conversation length to nudge skill scores up or down every turn
-- **Explicit user feedback** — thumbs up/down on responses directly adjust skill scores (+12 / -18) for skills used in that turn
-- **Auto-pruning** — skills scoring below 10 after 2+ evaluations are deleted; unused skills older than 30 days are cleaned up
-- **Skill injection** — only skills above the score threshold are loaded into conversation context
-- **Skill management** — ask "what have you learned?" to see all skills with scores, or tell it to forget one
-- **Usage tracking** — each skill tracks usage count, score, signal count, feedback count, and evaluation history
-- **Examples of learned skills:**
-  - "Always build websites with dark mode as default"
-  - "When scanning tokens, also fetch DexScreener data and check the deployer wallet"
-  - "User prefers concise answers without emojis"
-  - "For memecoins, always check Twitter sentiment first"
-
-### Goal Decomposition
-
-When you send a complex multi-phase request, the agent automatically detects it, plans subtasks, and executes them in dependency order.
-
-- **Automatic detection** — triggers when your message contains multiple independent phases (e.g. "research X, then build a site about it, then deploy it")
-- **Dependency tracking** — subtasks declare which prior steps they need results from; the orchestrator passes outputs forward
-- **Recursive execution** — each subtask runs through the full UrchinLoop with its own reasoning steps and tool access
-- **Synthesis** — after all subtasks complete, the agent merges results into a single coherent response
-- **Graceful fallback** — if decomposition fails or isn't needed, the request runs through the normal reasoning loop
-
-### Long-Term Project Planning
-
-The agent can track multi-session goals, milestones, and progress — so complex projects don't get lost between conversations.
-
-- **SET_GOAL** — define a project with a title, description, and list of milestones
-- **UPDATE_GOAL** — mark milestones as done, add notes, update progress mid-project
-- **GET_GOALS** — retrieve all active projects with their current status
-- **Context injection** — active project plans are automatically loaded into every conversation so the agent always knows what you're working on
-- **Auto-cap** — max 10 active projects, oldest evicted when exceeded
+---
 
 ### Wallet PnL & Activity Tracking
 
-Track wallets, get portfolio reports, and receive automatic notifications when watched wallets make significant moves — all with zero LLM cost for the polling.
+Track wallets and get automatic notifications when they make moves — zero LLM cost for polling.
 
-- **PNL_CHECK** — full portfolio report for any Solana wallet: SOL balance, all token holdings with live USD values via Jupiter, total portfolio value, and change since last check
-- **Wallet watchlist** — add up to 20 wallets with optional labels; watchlist persists across sessions
-- **Activity tracker** — polls watched wallets at your chosen interval (1-60 min) using only RPC + Jupiter price API (zero LLM calls). Detects new token buys, token sells, and large SOL transfers
-- **Smart notifications** — auto-pings you when a watched wallet makes a significant move (configurable USD threshold, default $10). Throttled to max 5 notifications per hour
-- **Activity log** — rolling buffer of 200 events queryable per wallet or across all wallets via WALLET_ACTIVITY
-- **Configurable daily digest** — fires at the exact time you choose (hour + minute). Runs PnL on all watchlist wallets, includes 24h activity summary, highlights biggest movers. One LLM call per digest
-- **User-driven config** — the bot always asks for your preferred digest time, polling interval, and notification threshold before setting anything up
+| Feature | Details |
+|---------|---------|
+| **PnL Check** | Full portfolio report — SOL + all tokens valued in USD, delta since last check |
+| **Watchlist** | Track up to 20 wallets with labels, persists across sessions |
+| **Activity Tracker** | Polls via RPC + Jupiter (no LLM calls). Detects buys, sells, large SOL moves |
+| **Notifications** | Auto-pings on significant moves (configurable USD threshold) |
+| **Daily Digest** | Scheduled briefing with PnL changes and activity summary across all watched wallets |
+| **PnL Cards** | Shareable visual snapshots — % change since first scan, downloadable PNG |
 
-### Explicit User Feedback
+---
 
-Rate any bot response with thumbs up or thumbs down. Feedback directly impacts the skills that were active during that response.
+### Companion Mode
 
-- **Thumbs up** — boosts active skill scores by +12
-- **Thumbs down** — penalizes active skill scores by -18
-- **Available everywhere** — feedback buttons appear on every response in both panel mode and companion mode
-- **Tracked per skill** — each skill records total feedback count and last feedback timestamp
+Floating mascot that follows you across every page.
 
-### Site Builder (Build Tab)
+- Drag anywhere — position persists across pages
+- Hover for quick-chat button
+- Chat bubble replies with typewriter effect
+- Dismissable — won't re-show the same message
+- Click to open full panel
+- Background results appear in the bubble + badge on mascot
+- Unified history — companion and panel share the same conversation
 
-A full website workspace. Describe a site, build it, then keep editing it with follow-up prompts and push updates to your live Netlify URL — all without leaving the extension.
+---
 
-- **Build from a prompt** — describe what you want and get a full static site (HTML + CSS + JS) with AI self-critique
-- **Edit with prompts** — after building, type follow-up changes like "make the header purple" or "add a contact form" and the AI rewrites your code
-- **Live site tracking** — once deployed, your Netlify URL stays pinned at the top with a green LIVE indicator. Every edit can be pushed to the same URL
-- **Edit and Push Live** — one-click to apply changes and immediately update your live site
-- **Start fresh anytime** — click "+ New" to wipe the workspace and build something new
-- **Edit history** — see all the changes you've made as chips above the edit prompt
-- Upload images from your computer or grab them from any page
-- Grabbed images are embedded directly into the built site
-- Preview inline, download as ZIP, or deploy to Netlify
-- Manage all your Netlify sites — view, visit, or bulk-delete old deploys
-- Collapsible source file viewer with per-file copy buttons
+### Site Builder
 
-### Token Deployer (Deploy Tab)
+Describe a site → get full HTML/CSS/JS → edit with prompts → deploy to Netlify.
 
-Prepare pump.fun launch packets with auto-fill.
+- AI self-critique scores design (1-10), auto-fixes below 8
+- Live site tracking with green LIVE indicator
+- Edit and push live in one click
+- Upload images or grab from any page
+- Preview, download ZIP, or deploy
+- Manage all Netlify sites — view, visit, bulk-delete
 
-- Fill in token name, symbol, description
-- Upload a token image
-- Click to open pump.fun/create with everything pre-filled (including the image)
-- Generate a token landing page and deploy it live to Netlify
-- Pull launch info from your chat history automatically
+---
 
-### Token Scanner (Scan Tab)
+### Autonomous Tasks & Monitoring
 
-Paste any Solana mint address and see:
+The agent works in the background — but only when you ask.
 
-- Top 10 holders with ownership percentages
-- Holder concentration analysis
-- Risk score (1-100) with breakdown
-- Cross-reference with previous scans — flag shared holders
-- Fresh wallet flags (potential sybil/rug signals)
-- Direct links to Solscan
+| Tool | What It Does |
+|------|-------------|
+| **Monitor** | Recurring checks on a schedule (min 5 min). Full agent loop each tick with change detection. Auto-expires after 6 hours |
+| **Set Timer** | One-shot delayed task — runs full agent loop when it fires |
+| **Schedule Task** | Queue immediate background work, non-blocking |
+| **List / Stop** | View active monitors or cancel any time |
+
+Results delivered via chat, companion bubble, and Chrome notifications.
+
+---
+
+### Self-Evolving Skills
+
+The agent learns from every interaction and gets better over time.
+
+- Saves preferences and patterns automatically
+- Every skill has a quality score (0-100) updated via evaluation + user feedback
+- Thumbs up/down directly adjusts skill scores
+- Detects satisfaction signals — corrections, praise, frustration
+- Auto-prunes low-scoring and unused skills
+- Ask "what have you learned?" to see all skills, or tell it to forget one
+
+---
+
+### Goal Tracking
+
+Multi-session project planning that persists across conversations.
+
+- Set goals with milestones and descriptions
+- Update progress, mark milestones done
+- Active goals auto-loaded into every conversation
+- Up to 10 concurrent projects
+
+---
+
+### Goal Decomposition
+
+Complex multi-phase requests are automatically broken into ordered subtasks with dependency tracking, executed recursively through the full loop, then synthesized into a single response.
+
+---
+
+### Token Deployer
+
+Prepare pump.fun launches with auto-fill — name, symbol, description, image. Generate and deploy a token landing page to Netlify.
+
+---
+
+### Token Scanner
+
+Paste any Solana mint address → top holders, concentration, risk score, cross-referencing, fresh wallet flags, Solscan links.
+
+---
 
 ### Right-Click Menu
 
-- **Send selection** — highlight text and send to urchinbot
-- **Send link** — right-click any link
-- **Send image** — right-click any image
-- **Capture page** — send full page context
+Send text, links, images, or full page context to urchinbot from any page.
+
+---
+
+## Agent Tools (44)
+
+![urchinbot Toolkit](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-tools.png)
+
+<details>
+<summary>View all 44 tools</summary>
+
+| Tool | What It Does |
+|------|-------------|
+| Web Search | Real-time search via DuckDuckGo |
+| Screenshot | Capture and visually analyze current page |
+| Reverse Image Search | Identify people, memes, logos via vision + web search |
+| Fetch URL | Read and summarize any webpage |
+| Token Price | Live Solana token price via Jupiter |
+| DexScreener Charts | Market data — price changes, volume, liquidity, FDV, inline chart preview |
+| Wallet Balance | SOL + token holdings via RPC |
+| Wallet History | Recent transaction history |
+| Token Scan | Top holders, concentration, risk score |
+| Multi-Scan | Compare up to 5 tokens side-by-side |
+| Detect Mints | Extract Solana addresses from text |
+| PnL Check | Full portfolio report with USD values |
+| Watch / Unwatch Wallet | Manage persistent watchlist |
+| List Watchlist | Show all watched wallets |
+| Wallet Activity | Query tracked buys, sells, SOL moves |
+| Set / Get Digest | Configure daily briefing schedule |
+| PnL Card | Visual PnL snapshot with downloadable PNG |
+| List Scans | View all scanned tokens with entry prices |
+| Build Site | Generate static website with AI self-critique |
+| Edit Site | Modify with follow-up prompts |
+| Deploy Site | Push to Netlify |
+| List / Delete Sites | Manage Netlify deploys |
+| Token Launch | Pump.fun auto-fill |
+| Memory (Remember/Recall) | Save and retrieve info across sessions |
+| Search Memory | Semantic search via embeddings |
+| Set Alert | Price and wallet alerts with notifications |
+| Remind Me | Scheduled follow-ups with intelligent execution |
+| Set Timer | Delayed background tasks |
+| Schedule Task | Immediate non-blocking background work |
+| Monitor / List / Stop | Recurring checks with change detection |
+| Continue | Self-extend reasoning budget (up to 24 steps) |
+| Learn / List / Forget Skill | Self-evolving behavioral instructions |
+| Set / Update / Get Goals | Multi-session project planning |
+
+</details>
+
+---
+
+## How UrchinLoop Works
+
+UrchinLoop is the agent runtime behind urchinbot — a multi-step reasoning engine, not a chatbot wrapper.
+
+Every request enters a loop: **think → act → observe → decide**. The agent can chain up to 24 tool calls, fire tools in parallel, extend its own step budget, schedule follow-up work, and learn from the interaction.
+
+### Architecture
+
+![UrchinLoop Architecture](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-architecture.png)
+
+### The Loop
+
+![UrchinLoop Reasoning Pipeline](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-flow.png)
+
+### Routing
+
+Requests are classified before entering the loop:
+
+| Type | Steps | Examples |
+|------|-------|---------|
+| Quick | 1 | Greetings, memory lookups |
+| Standard | 3 | Price checks, web searches |
+| Deep | 8+ | Multi-tool analysis, research chains |
+
+The agent can self-extend mid-loop with the CONTINUE tool, up to 24 steps.
+
+### Parallel Execution
+
+Independent tools fire simultaneously:
+
+```
+THINK: "I need price, DexScreener data, and deployer wallet"
+  ├── GET_TOKEN_PRICE  →
+  ├── DEX_DATA         →  all return → next THINK step
+  └── GET_WALLET_BALANCE →
+```
+
+---
+
+## Memory System
+
+![UrchinLoop Memory System](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-memory.png)
+
+| Layer | What | Limits |
+|-------|------|--------|
+| Condensed History | Compressed narrative of all past conversations | Never expires |
+| Recent Chat | Last 30 messages at full fidelity | Rolling |
+| User Profile | Auto-extracted knowledge (wallets, preferences) | 50 keys max |
+| Session Summaries | Bullet points from past sessions | Last 20 |
+| Manual Memories | Anything you tell it to remember | 100 max |
+| Learned Skills | Behavioral instructions, scored 0-100 | Auto-pruned |
+| Project Plans | Goals, milestones, progress | 10 max |
+
+**Context rot prevention** — memory injection is relevance-filtered using embeddings. Only memories matching your current message are loaded. Skills below score threshold are excluded. Hard context budget of 80K chars. Tool outputs are capped per-tool.
+
+Click the **brain icon** in the Ask tab to view or wipe all memory.
+
+---
 
 ## Setup
 
-Click the urchinbot icon, then **Settings**.
+Click the urchinbot icon → **Settings**.
 
 ### LLM Provider (required)
 
-Powers all AI features. Choose one:
-
 | Provider | Get Key | Recommended Model |
 |----------|---------|-------------------|
-| OpenAI | https://platform.openai.com/api-keys | gpt-4o or gpt-4o-mini |
-| Anthropic | https://console.anthropic.com/settings/keys | claude-sonnet-4-20250514 |
+| OpenAI | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | gpt-4o or gpt-4o-mini |
+| Anthropic | [console.anthropic.com](https://console.anthropic.com/settings/keys) | claude-sonnet-4-20250514 |
 | OpenAI Compatible | Your provider's dashboard | Any chat model |
 
-**Faster replies?** Use **gpt-4o-mini** (OpenAI) or **Claude Opus 4.6** (Anthropic) in Settings for snappier responses.
-
-For OpenAI Compatible providers (Groq, Together, Ollama, etc.), also set the base URL.
+For faster replies, use **gpt-4o-mini** or a lighter model.
 
 ### Solana RPC (optional)
 
 Required for token scanning, wallet checks, and transaction history.
 
-| Provider | Link | Free Tier |
-|----------|------|-----------|
-| Helius | https://www.helius.dev | 100k requests/day |
-| QuickNode | https://www.quicknode.com | Limited |
+| Provider | Free Tier |
+|----------|-----------|
+| [Helius](https://www.helius.dev) | 100k requests/day |
+| [QuickNode](https://www.quicknode.com) | Limited |
 
 ### Netlify Token (optional)
 
-Required for one-click web deploy, live site updates, and site management.
+For one-click deploys: [Get token](https://app.netlify.com/user/applications#personal-access-tokens) → name it `urchinbot` → paste in Settings.
 
-1. Go to https://app.netlify.com/user/applications#personal-access-tokens
-2. Create a new token named `urchinbot`
-3. Paste it in Settings
+---
 
 ## Example Prompts
 
@@ -255,245 +304,86 @@ what are you?
 what token is this page about?
 search for latest Solana news
 what's the price of JUP?
+```
+
+```
 check wallet 7xKX... balance and recent transactions
 compare these tokens: MINT1, MINT2, MINT3
 take a screenshot and tell me what you see
-who are these people in this image?
 reverse image search this meme
-read this URL: https://example.com/article
+```
+
+```
 build me a crypto dashboard with dark theme
-make the hero section bigger and add animations
 deploy my site to netlify
 edit the footer and push it live
-show me my netlify sites
-delete the old ones
-deploy a token called DogWifHat with ticker WIF
-remember my wallet is 7xKX...
-what do you remember about me?
-check this token again in 30 minutes and tell me if the price changed
+```
+
+```
 monitor this token every 15 minutes
-keep an eye on this wallet for the next 2 hours
-stop monitoring
-show active monitors
-what skills have you learned?
-forget the dark-mode-preference skill
-set a goal: launch token landing page by Friday
-update goal 1 — milestone 2 done
-what are my active projects?
-check PnL for 7xKX...
+check this token again in 30 minutes
 watch this wallet — label it "whale1"
-show my watchlist
-what has whale1 been doing?
-set up daily digest at 8:30am, check every 10 minutes, notify on $50+ buys
-show my digest settings
+set up daily digest at 8:30am
+show my pnl on BONK
 ```
 
-## Agent Tools (42)
-
-![urchinbot Toolkit](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/TOOLS.png)
-
-| Tool | What It Does |
-|------|-------------|
-| Web Search | Real-time search via DuckDuckGo |
-| Screenshot | Captures and visually analyzes current page |
-| Reverse Image Search | Identifies people, memes, logos via vision + web search |
-| Fetch URL | Read and summarize any webpage |
-| Token Price | Live Solana token price via Jupiter + price change tracking |
-| DexScreener Charts | Structured market data — price, 5m/1h/6h/24h changes, volume, liquidity, pair age, FDV, buy/sell txns, inline chart preview image |
-| Wallet Balance | SOL + top token holdings via RPC |
-| Wallet History | Recent transaction history for any wallet |
-| Token Scan | Top holders, concentration, risk score, cross-referencing |
-| Multi-Scan | Compare up to 5 tokens side-by-side for safety |
-| Detect Mints | Extract Solana addresses from any text |
-| PnL Check | Full portfolio report — SOL + all tokens valued in USD, delta since last check |
-| Watch Wallet | Add wallet to persistent watchlist (up to 20) with optional label |
-| Unwatch Wallet | Remove wallet from watchlist by address or label |
-| List Watchlist | Show all watched wallets |
-| Wallet Activity | Query recent tracked activity (buys, sells, SOL moves) per wallet or all |
-| Set Digest | Configure daily digest time, tracker poll interval, and notification threshold |
-| Get Digest Config | Show current digest and tracker settings |
-| Build Site | Generate full static website with AI self-critique |
-| Edit Site | Modify existing site with follow-up prompts |
-| Deploy Site | Push current site to Netlify (new or update existing) |
-| List Sites | Show all your Netlify sites |
-| Delete Site | Remove a Netlify site by ID |
-| Token Launch | Prepare pump.fun launch packet + auto-fill |
-| Memory | Save/recall info across sessions (REMEMBER/RECALL) |
-| Search Memory | Semantic search via embeddings + cosine similarity (keyword fallback) |
-| Set Alert | Price and wallet alerts with Chrome notifications |
-| Remind Me | Schedule follow-up tasks with intelligent execution |
-| Set Timer | Schedule autonomous background tasks that run through the full agent loop |
-| Schedule Task | Queue immediate or delayed background work, non-blocking |
-| Monitor | Continuous recurring monitoring with full agent analysis each tick |
-| List Monitors | Show all active monitors with status and time remaining |
-| Stop Monitor | Cancel a running monitor |
-| Continue | Self-extend reasoning budget for complex multi-step analysis |
-| Learn Skill | Teach itself new behavioral instructions that persist permanently |
-| List Skills | Show all learned skills with usage stats |
-| Forget Skill | Remove an outdated or wrong learned skill |
-| Set Goal | Save a project plan with goals and milestones |
-| Update Goal | Mark milestones complete, add notes, adjust progress |
-| Get Goals | List all active projects and their status |
-
-## How UrchinLoop Works
-
-UrchinLoop is the custom agent runtime that powers urchinbot. It's not a chatbot wrapper — it's a multi-step reasoning engine that thinks, plans, acts, observes, learns, and evolves autonomously.
-
-Every request runs through a structured loop. The agent doesn't just call an LLM and return the response — it enters a cycle where it can chain up to 24 tool calls, reason about intermediate results, extend its own step budget, schedule follow-up work, and learn new skills from the interaction.
-
-### Architecture
-
-![UrchinLoop Architecture](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-architecture.png)
-
-### The Loop
-
-Every time you send a message, UrchinLoop runs this cycle:
-
-![UrchinLoop Reasoning Pipeline](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-flow.png)
-
-### Smart Routing
-
-Before entering the reasoning loop, UrchinLoop classifies the request:
-
-- **Quick reply** (1 step) — greetings, simple questions, memory lookups
-- **Standard** (3 steps) — single tool tasks like price checks or web searches
-- **Deep** (8+ steps) — multi-tool analysis, comparisons, research chains
-
-The agent can also self-extend its step budget mid-loop using the CONTINUE tool, up to a maximum of 24 steps.
-
-### Parallel Tool Execution
-
-When the agent needs multiple independent pieces of data, it fires tools in parallel. A single THINK step can emit multiple tool calls:
-
 ```
-THINK: "I need the token price, DexScreener data, and deployer wallet info"
-  ├── GET_TOKEN_PRICE (fires)
-  ├── DEX_DATA (fires)
-  └── GET_WALLET_BALANCE (fires)
-       all results return → next THINK step
+set a goal: launch token landing page by Friday
+what skills have you learned?
+what do you remember about me?
 ```
 
-### Autonomous Execution
-
-UrchinLoop doesn't just respond — it can schedule future work:
-
-- **Timers** — `SET_TIMER` schedules a full agent loop to run later. When the alarm fires, UrchinLoop spins up, runs the task with all 42 tools, and pushes the result back to you
-- **Monitors** — `MONITOR` creates a recurring alarm. Every tick runs a full loop with the monitoring instructions, compares against previous results, and alerts on changes
-- **Background tasks** — `SCHEDULE_TASK` queues immediate non-blocking work so the agent can do research while you keep browsing
-- **Self-continuation** — the agent can extend its own reasoning with `CONTINUE` when it needs more steps
-
-All autonomous tasks run in the Chrome service worker. Results are delivered via Chrome notifications, the companion chat bubble, and the Ask tab thread.
-
-### What Makes It Smart
-
-- **Mandatory chain-of-thought** — the agent thinks before every action, planning its approach in hidden reasoning blocks
-- **Auto-context** — detects what kind of crypto page you're on and pre-loads relevant data (mints, pairs, prices) without you asking
-- **Proactive suggestions** — notices patterns, suggests next steps, cross-references data between scans, and learns your preferences
-- **Self-evolving skills** — learns behavioral instructions from your interactions, scores their effectiveness via LLM evaluation and implicit satisfaction signals, and auto-prunes low-quality ones
-- **Goal decomposition** — detects multi-phase requests, plans subtask chains with dependencies, executes each through the full loop, and synthesizes a unified response
-- **Continuous monitoring** — tell it to monitor a token or wallet, and it runs recurring full-intelligence checks with change detection on a configurable schedule
-- **Autonomous execution** — can schedule background tasks that run through the full agent loop without you waiting, then deliver results via notifications and the companion bubble
-- **Ask first, act second** — the agent suggests background work and monitoring when useful, but never schedules anything without your explicit confirmation
-- **Self-extending reasoning** — can expand its own step budget (up to 24 steps) for complex analysis instead of cutting short
-- **Self-critique on builds** — AI critic scores the design (1-10) and auto-fixes issues if below 8
-- **Live site editing** — edit your deployed site with natural language prompts and push updates to the same Netlify URL
-- **Relevance-filtered memory** — only memories and session summaries relevant to your current message are injected, preventing context rot as memory grows
-- **Non-blocking memory** — memory updates, skill learning, skill evaluation, satisfaction signals, and user feedback processing happen in the background after the response, so you never wait
-- **Unified companion chat** — companion mode and the full panel share the same conversation thread seamlessly
-
-## Agent Memory
-
-![UrchinLoop Memory System](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-memory.png)
-
-The agent has a 7-layer memory system:
-
-1. **Condensed History** — compressed narrative of all past conversations (never expires)
-2. **Recent Chat** — last 30 messages at full fidelity
-3. **User Profile** — auto-extracted permanent knowledge (wallets, preferences, projects), capped at 50 keys
-4. **Session Summaries** — detailed bullet points from past sessions (last 20 kept)
-5. **Manual Memories** — anything you tell it to remember (capped at 100, oldest evicted)
-6. **Learned Skills** — self-evolving behavioral instructions, scored 0-100, auto-pruned when ineffective
-7. **Project Plans** — multi-session goals, milestones, progress (up to 10 projects)
-
-### Context Rot Prevention
-
-Memory injection is relevance-filtered to prevent context rot — the gradual degradation that happens when too much stale or irrelevant info floods the LLM context:
-
-- **Relevance filtering** — when you have more than a few memories, only the ones semantically relevant to your current message are injected. Uses the same embeddings infrastructure as Search Memory. Falls back to keyword matching for Anthropic users.
-- **Profile cap** — user profile auto-prunes to the newest 50 keys
-- **Memory cap** — manual memories are capped at 100 entries; oldest by timestamp are evicted when the cap is exceeded
-- **Skill scoring + pruning** — skills below score 15 are excluded from context; skills below 10 after 2+ evaluations are deleted
-- **Session rotation** — session summaries capped at 20, oldest deleted first
-- **Condensation** — old conversations are LLM-compressed into a dense 4000-char narrative
-- **Hard context budget** — all injected context is trimmed to 80K chars max to prevent window overflow
-- **Tool result summarization** — large tool outputs are capped and truncated per-tool
-- **Embedding cache** — memory embeddings cached (max 300) for fast re-use; invalidated when memories are overwritten
-
-The most recent session summary is always included regardless of relevance score to maintain conversational continuity.
-
-Click the **brain icon** in the Ask tab to view or wipe all memory.
+---
 
 ## Project Structure
 
 ```
-urchinbot_v.001.zip
-  urchinbot-extension/
-    manifest.json       Chrome MV3 config
-    background.js       Service worker — UrchinLoop engine, LLM calls, 42 tools,
-                        autonomous task runner, monitor scheduler, skill manager,
-                        wallet activity tracker, daily digest
-    content.js          Overlay UI — Shadow DOM panel, companion mode, speech bubble,
-                        smart page context, chat thread, result delivery
-    styles.css          Host element styles
-    popup.html          Toolbar bubble menu
-    popup.js            Popup logic
-    options.html        Settings page (provider, model, RPC, Netlify token)
-    options.js          Settings save/load, model picker
-    urchin.png          Logo
-    icons/              16, 48, 128px toolbar icons
-    lib/jszip.min.js    ZIP generation (vendored)
+urchinbot-extension/
+  manifest.json       Chrome MV3 config
+  background.js       UrchinLoop engine, 44 tools, autonomous tasks, monitors
+  content.js          Overlay UI, companion mode, page context
+  sidepanel.html/js   Chrome side panel UI
+  popup.html/js       Toolbar menu
+  options.html/js     Settings page
+  styles.css          Host element styles
+  urchin.png          Logo
+  icons/              Toolbar icons
+  lib/jszip.min.js    ZIP generation
 ```
+
+---
 
 ## Security
 
-- **Local-first** — all keys and data stay in chrome.storage.local on your machine
-- **No custodial keys** — never asks for or stores seed phrases or private keys
-- **No tracking** — zero analytics, zero telemetry, zero data collection
-- **External calls** — only to your configured LLM provider, Solana RPC, DuckDuckGo (search), Jupiter (prices), DexScreener (charts/market data), and Netlify (deploy)
-- **Memory is local** — persistent memory, skills, and task queue stored in chrome.storage.local, never sent to external servers
-- **Autonomous tasks are local** — background tasks run in your browser's service worker, not on any remote server
+- **Local-first** — all keys and data stay in `chrome.storage.local`
+- **No custodial keys** — never asks for seed phrases or private keys
+- **No tracking** — zero analytics, zero telemetry
+- **External calls only to** — your LLM provider, Solana RPC, DuckDuckGo, Jupiter, DexScreener, Netlify
+- **Background tasks** — run in your browser's service worker, not on any remote server
+
+---
 
 ## Roadmap
 
-### Coming Soon
+- Telegram bot — same agent, same tools, no extension
+- Skill sharing — export/import between users
+- Custom tool definitions — teach it to call new APIs
+- Multi-agent collaboration — specialist sub-agents for complex tasks
+- Vision-in-the-loop — multimodal reasoning during tool chains
+- Code execution sandbox
 
-- Telegram bot — full urchinbot agent in your DMs, same 42 tools and memory
-- Skill sharing — export/import learned skills between users
-- Custom tool definitions — teach the agent to call new APIs
-- One-command site deploys with custom domains
-- Token launch automation improvements
-
-### Future
-
-- Updates coming soon!
+---
 
 ## Disclaimers
 
-This is a research and experimentation tool. Not financial advice.
+Not financial advice. Memecoins are risky. DYOR.
 
-- Memecoins are extremely risky. DYOR.
-- Pump.fun integration only auto-fills forms. You review and confirm all transactions yourself.
-- AI-generated websites should be reviewed before production use.
-- Token scanning shows on-chain data — interpretation is up to you.
-- Autonomous background tasks consume LLM API credits when they execute.
+- Pump.fun integration only auto-fills forms — you confirm all transactions
+- AI-generated websites should be reviewed before production use
+- Token scanning shows on-chain data — interpretation is up to you
+- Background tasks consume LLM API credits when they execute
 
-## Future Updates
-
-- **Multi-agent collaboration** — spawn specialist sub-agents (researcher, coder, analyst) that collaborate on complex tasks, each with their own tool access and expertise, orchestrated by a coordinator agent
-- **Structured project memory** — persistent multi-session project plans that track goals, milestones, blockers, and progress across conversations (**implemented** — use SET_GOAL, UPDATE_GOAL, GET_GOALS)
-- **Fine-grained skill policies** — replace free-text skill instructions with structured condition/action rules for more precise behavioral control
-- **Vision-in-the-loop** — multimodal LLM calls during reasoning steps so the agent can interpret screenshots and images inline, not just as side-tool calls
-- **Code execution sandbox** — run and test generated code in an isolated environment before presenting results
+---
 
 ## License
 
