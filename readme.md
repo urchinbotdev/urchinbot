@@ -1,5 +1,3 @@
-<img width="1179" height="953" alt="image" src="https://github.com/user-attachments/assets/9d0e7efb-802c-447a-83a6-c40e71a9a740" /># urchinbot
-
 A local-first AI agent that lives in your browser. It thinks step-by-step, scans Solana tokens, tracks wallets, builds websites, and remembers everything — powered by **UrchinLoop**, a custom reasoning engine with 44 tools.
 
 ![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
