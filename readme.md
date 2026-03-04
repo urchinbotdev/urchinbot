@@ -4,7 +4,7 @@ A local-first AI agent that lives in your browser. It thinks step-by-step, scans
 
 ![urchinbot](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot.png)
 
-[Website](https://urchinbot.fun) | [Twitter/X](https://x.com/urchinbot) | [GitHub](https://github.com/urchinbotdev/urchinbot) | [Install](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.08.zip)
+[Website](https://urchinbot.fun) | [Twitter/X](https://x.com/urchinbot) | [GitHub](https://github.com/urchinbotdev/urchinbot) | [Install](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.110.zip)
 
 ---
 
