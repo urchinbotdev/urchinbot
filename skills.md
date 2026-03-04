@@ -306,4 +306,12 @@ Yes — the auto-learning analysis (every 7th conversation) and self-evaluation 
 
 ---
 
+## More Guides
+
+| Guide | Description |
+|-------|-------------|
+| [Run Free with Ollama](ollama-guide.md) | Use urchinbot with local AI — zero cost, no API key |
+| [Free Cloud Providers](free-providers.md) | Groq, Cerebras, Google AI Studio — free cloud AI |
+| [Pump.fun Developer Updates](../pump-dev-updates/) | Changelog of all Pump program upgrades |
+
 [Back to main README](../readme.md) | [urchinbot Website](https://urchinbot.fun) | [urchinbot on X](https://x.com/urchinbot) | [GitHub](https://github.com/urchinbotdev/urchinbot)
