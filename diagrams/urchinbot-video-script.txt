@@ -1,0 +1,148 @@
+# Urchinbot — 60+ Second Explainer Video Script
+
+**Target length:** 65–75 seconds  
+**Tone:** Confident, clean, developer/crypto-friendly  
+**Voiceover pace:** ~2.5 words/sec
+
+────────────────────────────────────────────
+SCRIPT
+────────────────────────────────────────────
+
+[0:00–0:05] HOOK
+"You're on DexScreener. You found a token. What now?"
+
+SCENE: Browser showing DexScreener with a token chart. Cursor hovers. Quick cut.
+
+---
+
+[0:05–0:12] WHAT IT IS
+"Urchinbot is an AI agent that lives in your browser. It thinks step-by-step, has 55 tools, and remembers everything across sessions. It's not a chatbot — it's a multi-step reasoning engine."
+
+SCENE: urchin mascot appears on screen, panel slides open. Chat input visible. Quick montage: mascot, panel, cursor typing.
+
+---
+
+[0:12–0:22] CRYPTO & TOOLS
+"Scan any token — top holders, risk score, cross-reference with previous scans. Check wallet balances and transaction history. Get live prices from Jupiter. Deploy tokens directly to pump.fun — atomic create and buy in one transaction. Search the web for news. Take screenshots and reverse image search. It sees your page, your tweets, your DEX pairs."
+
+SCENE: Split or overlay: token scan result (holders, risk score), wallet balance card, price chart, pump.fun deploy result, web search results. Right-click menu: "Send to urchinbot". Companion bubble appears with analysis.
+
+---
+
+[0:22–0:32] SITE BUILDER & MEMORY
+"Build and deploy websites from chat. Describe it, edit with prompts, push to Netlify. It remembers your wallets, preferences, and past conversations. Semantic memory — it only pulls what's relevant, so it gets smarter without getting bloated."
+
+SCENE: Build tab — prompt "crypto dashboard dark theme", site generates, preview loads. Edit prompt "make the header purple". Deploy → Netlify URL. Brain icon, memory panel. Thumbs up on a response.
+
+---
+
+[0:32–0:45] AUTONOMOUS & MONITORING
+"Schedule work that runs without you. Check this token in 30 minutes? It fires the full agent loop and pushes the result. Monitor a token every 15 minutes — every tick is a full intelligence check, not a dumb alert. Results land in the companion bubble and Chrome notifications."
+
+SCENE: User types "monitor this token every 15 minutes". Agent confirms. Time lapse or clock graphic. Notification pops. Companion bubble shows "Price up 12%, liquidity unchanged". Badge on mascot. User clicks, sees result.
+
+---
+
+[0:45–0:55] LEARNING & BRAIN
+"It learns. Thumbs up, thumbs down — skills get scored. It auto-prunes what doesn't work. Goal decomposition — give it a complex multi-phase request and it breaks it into subtasks, executes each, and synthesizes. Up to 24 reasoning steps."
+
+SCENE: Thumbs up/down on response. "What have you learned?" — skill list appears. User: "research X, build a site, deploy it" — agent shows subtask plan. Architecture diagram flash (THINK → ACT → OBSERVE loop).
+
+---
+
+[0:55–0:65] CTA
+"Local-first. Your keys stay on your machine. Chrome extension — install, add your LLM key, and go. Follow @urchinbot on X. urchinbot.fun. Link in the description."
+
+SCENE: Settings panel (blur API key). Install steps or "Load unpacked" brief. urchin mascot waves. Logo + x.com/urchinbot + urchinbot.fun + github.com/urchinbotdev/urchinbot. End card.
+
+────────────────────────────────────────────
+SCENE IDEAS — DETAILED
+────────────────────────────────────────────
+
+HOOK (0–5 sec)
+• POV: User browsing DexScreener, token page in view
+• Alternative: Split screen — left crypto charts, right urchin mascot
+• Mood: "You're about to make a decision — need more intel"
+
+WHAT IT IS (5–12 sec)
+• urchin mascot pops in (or fades in from corner)
+• Panel slides open from right, Ask tab active
+• Typing animation: "what's the risk on this token?"
+• VO pace: steady, confident
+
+CRYPTO & TOOLS (12–22 sec)
+• B-roll montage: token scan card, wallet card, price ticker, web search snippet
+• Right-click context menu highlighting "Send to urchinbot"
+• Companion mode: mascot in corner, chat bubble with scrolling analysis
+• Overlay icons: SCAN_TOKEN, WALLET_BALANCE, WEB_SEARCH, SCREENSHOT
+
+SITE BUILDER & MEMORY (22–32 sec)
+• Build tab: prompt box → generated preview (dark dashboard)
+• Edit: "make header purple" → live update
+• Deploy button → Netlify "LIVE" badge
+• Memory: brain icon click, list of remembered items
+• Thumbs up/down buttons highlight on a response
+
+AUTONOMOUS & MONITORING (32–45 sec)
+• Chat: "monitor this token every 15 minutes"
+• Agent reply: "I'll check every 15 min..."
+• Clock or timer graphic (optional)
+• Chrome notification: "Urchinbot: Token check complete"
+• Companion bubble with result + "Price +12%, liquidity flat"
+• Red badge on mascot, user clicks, panel opens to thread
+
+LEARNING & BRAIN (45–55 sec)
+• Thumbs up animation on response
+• "what have you learned?" → skills list scroll
+• Complex prompt in chat: "research Solana memecoins, build a landing page, deploy to Netlify"
+• Agent shows subtask breakdown (1. Research 2. Build 3. Deploy)
+• Quick cut: UrchinLoop architecture diagram (THINK–ACT–OBSERVE)
+• "24 steps" text or badge
+
+CTA (55–65 sec)
+• Settings page, API key field (blurred)
+• "Your keys. Your data. Local."
+• Install steps: chrome://extensions → Load unpacked
+• urchin mascot waves or bounces
+• End card: logo, "Follow @urchinbot", x.com/urchinbot, urchinbot.fun, github.com/urchinbotdev/urchinbot
+
+────────────────────────────────────────────
+B-ROLL CHEAT SHEET
+────────────────────────────────────────────
+
+• DexScreener token page
+• Birdeye / pump.fun page
+• Chat panel with streaming response
+• Companion mascot + speech bubble
+• Token scan result (holders, risk score)
+• Wallet balance card
+• Build tab — site preview
+• Deploy → Netlify URL
+• Chrome notification
+• Thumbs up/down UI
+• Memory panel / brain icon
+• Architecture diagram (urchinloop-architecture.png)
+• Flow diagram (urchinloop-flow.png)
+• urchin.png mascot (static or animated)
+
+────────────────────────────────────────────
+MUSIC / SOUND
+────────────────────────────────────────────
+
+• Upbeat, minimal tech — no vocals
+• Build subtly through middle, dip at CTA
+• Optional: soft click/pop when mascot appears
+• Notification sound when showing Chrome alert
+
+────────────────────────────────────────────
+SUBTITLES
+────────────────────────────────────────────
+
+Keep key phrases on screen:
+• "55 tools"
+• "Remembers everything"
+• "Deploy to pump.fun"
+• "Monitor. Not dumb alerts."
+• "Local-first"
+• "@urchinbot"
+• "urchinbot.fun"

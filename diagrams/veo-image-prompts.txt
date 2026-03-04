@@ -1,0 +1,115 @@
+# Urchinbot — Veo & Image Gen Prompt Ideas
+
+Use urchin.png as a reference/starting image for these prompts.
+Character: round purple sea urchin, chibi/kawaii style, dark purple body with lighter lavender face, sharp conical spines (some with yellow glow tips), large dark blue eyes with white sparkle highlights, small upturned smile, pink blush cheeks, white stubby feet, floating blue bubbles, pink starfish left, golden star right, light blue oval base.
+
+────────────────────────────────────────────
+VEO / VIDEO PROMPTS (image-to-video starters)
+────────────────────────────────────────────
+
+1. The urchin mascot slowly blinks, bubbles drift upward, soft underwater light. 5 sec, calm, whimsical.
+
+2. Gentle bounce or wiggle — urchin bounces once, bubbles and stars shimmer. Fluid animation, kawaii style. 3–4 sec.
+
+3. Awakening — start from still, eyes gain sparkle, pink star rotates slowly, background fades from black to soft underwater glow. 5 sec.
+
+4. Zoom out — urchin in frame, camera pulls back to reveal coral reef, friendly fish swim past. Same art style. 6 sec.
+
+5. Thinking pose — urchin tilts, thought bubble appears with a small star. 4 sec.
+
+6. Happy reaction — urchin bounces twice, eyes sparkle more, smile widens. 3 sec.
+
+7. Floating — urchin drifts slowly upward through blue water, bubbles rise around it. 5 sec, dreamy.
+
+8. Waving — one stubby foot waves, urchin rotates slightly. 3 sec, loop-friendly.
+
+9. Code mode — urchin surrounded by floating code brackets and symbols, spins slowly. Tech/product vibe. 5 sec.
+
+10. Token scan — urchin holds tiny magnifying glass, inspects floating token icon, nods. 5 sec, crypto theme.
+
+────────────────────────────────────────────
+VEO / VIDEO — GREEN SCREEN / CHROMA KEY (compositable)
+────────────────────────────────────────────
+
+Add: "solid bright green background #00FF00, chroma key green screen, evenly lit, no shadows on bg, no green spill on subject"
+
+1. Urchin slowly blinks, bubbles drift. Solid green background, chroma key, evenly lit. 5 sec.
+
+2. Gentle bounce — urchin bounces once, bubbles shimmer. Green screen background, perfect for keying. 3–4 sec.
+
+3. Awakening — eyes gain sparkle, star rotates. Solid green bg, chroma key. 5 sec.
+
+4. Thinking pose — urchin tilts, thought bubble with star. Green screen, evenly lit green #00FF00. 4 sec.
+
+5. Happy reaction — urchin bounces twice, smile widens. Chroma key green background. 3 sec.
+
+6. Waving — stubby foot waves, urchin rotates. Green screen, loop-friendly. 3 sec.
+
+7. Code mode — urchin with floating code symbols, spins slowly. Solid green background for keying. 5 sec.
+
+8. Token scan — urchin with magnifying glass, inspects token. Green screen, crypto theme. 5 sec.
+
+9. Floating idle — urchin drifts gently, bubbles rise. Chroma key green, 5 sec.
+
+10. Nod — urchin nods approval, slight bounce. Green screen, 3 sec.
+
+────────────────────────────────────────────
+IMAGE GEN PROMPTS (start frames / variations from urchin.png)
+────────────────────────────────────────────
+
+STARTER FRAMES FOR VIDEO:
+• Same urchin, neutral pose, transparent or dark bg — "Cute purple sea urchin mascot, chibi style, neutral expression, floating bubbles, transparent background, 4K, digital illustration"
+• Same urchin, slight smile — "Purple spiky urchin character, large blue eyes, pink blush, small smile, bubbles and stars, kawaii, clean digital art, PNG"
+• urchin + thought bubble — "Purple urchin mascot with empty thought bubble above head, chibi, blue bubbles, stars, simple bg"
+
+SCENE VARIATIONS:
+• Underwater reef — "Purple urchin mascot from ref, floating in stylized coral reef, bioluminescent plants, fish, bubbles, kawaii digital painting"
+• Desktop/cosmic — "Purple urchin on dark blue gradient, subtle stars, bubbles, wallpaper style, 4K, clean"
+• Holding wrench — "Cute purple urchin holding tiny silver wrench, coding/developer mascot, chibi, bubbles, digital art"
+• With laptop — "Purple urchin mascot at tiny laptop, coding, same chibi style, fun tech illustration"
+• Regal — "Purple urchin king, tiny golden crown, surrounded by smaller urchins, coral throne, fantastical underwater"
+
+EXPRESSION SHEET:
+• Surprised — "Purple urchin, wide open eyes, O mouth, same design, expression sheet"
+• Sleepy — "Purple urchin, half-closed eyes, yawn, blushing, kawaii"
+• Curious — "Purple urchin, head tilted, questioning look, sparkle in eye"
+• Happy — "Purple urchin, big smile, closed eyes, bounce-ready"
+
+3D / RENDER STYLE:
+• "3D render of purple urchin mascot, soft plush texture, studio lighting, eyes sparkle, chibi proportions, white background"
+
+────────────────────────────────────────────
+IMAGE GEN — GREEN SCREEN / CHROMA KEY (compositable)
+────────────────────────────────────────────
+
+Add to any prompt: "solid bright green background, chroma key #00FF00, evenly lit, no shadows on background, no green spill on character"
+
+STARTER FRAMES FOR VIDEO (green screen):
+• "Cute purple sea urchin mascot, chibi style, neutral expression, floating bubbles, solid bright green background #00FF00, chroma key, evenly lit, digital illustration"
+• "Purple spiky urchin character, large blue eyes, pink blush, small smile, bubbles and stars, kawaii, solid green screen background, perfect for keying, PNG"
+• "Purple urchin mascot with empty thought bubble, chibi, solid chroma key green background, evenly lit, no shadows"
+
+POSE VARIANTS (green screen):
+• "Purple urchin waving one stubby foot, green screen background #00FF00, chroma key"
+• "Purple urchin bouncing happily, eyes sparkle, solid green background for keying"
+• "Purple urchin tilting head, thinking pose, thought bubble, chroma key green bg"
+• "Purple urchin holding tiny silver wrench, green screen, developer mascot"
+• "Purple urchin with magnifying glass inspecting token icon, green background, chroma key"
+• "Purple urchin surrounded by floating code brackets, green screen, tech mascot"
+• "Purple urchin nodding approval, slight smile, solid green #00FF00 background"
+• "Purple urchin sleepy, half-closed eyes, green screen background"
+
+TIPS:
+• Use #00FF00 or #00B140 for best keying — avoid green in subject (urchin is purple, safe)
+• Request "evenly lit" and "no shadows on background" to reduce keying artifacts
+• "No green spill" keeps edges clean for compositing
+
+────────────────────────────────────────────
+QUICK REFERENCE (paste into Veo / Runway / etc.)
+────────────────────────────────────────────
+
+Character keywords: purple sea urchin, chibi, kawaii, dark blue eyes, pink blush, sharp spines, bubbles, stars, stubby feet, digital illustration
+
+Style: whimsical, friendly, clean lines, soft gradients, mascot character
+
+Green screen add-on: solid bright green background #00FF00, chroma key, evenly lit, no shadows on bg, no green spill on subject

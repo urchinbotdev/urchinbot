@@ -1,0 +1,93 @@
+X ARTICLE — Paste into X Article composer
+==========================================
+INSTRUCTIONS:
+  1. Enter TITLE and SUBTITLE in the X Article title fields
+  2. Copy everything below "--- BODY START ---" and paste into the editor
+  3. Bold text already appears bold (Unicode bold)
+  4. Lines on their own in bold = select them and click Heading in toolbar
+  5. The bullet lists = select them and click List in toolbar
+==========================================
+
+
+TITLE:
+UrchinLoop: An Open-Source Agent Engine for Devs
+
+SUBTITLE:
+One JavaScript file. Any dev can use it to build their own tools. Open source from day one.
+
+
+--- BODY START ---
+
+Our goal is simple: 𝗹𝗲𝘁 𝗮𝗻𝘆 𝗱𝗲𝘃 𝘂𝘀𝗲 𝗨𝗿𝗰𝗵𝗶𝗻𝗟𝗼𝗼𝗽 𝘁𝗼 𝗯𝘂𝗶𝗹𝗱 𝘁𝗵𝗲𝗶𝗿 𝗼𝘄𝗻 𝘁𝗼𝗼𝗹𝘀.
+
+We believe in open source utility — and we mean that from day one. Both 𝗨𝗿𝗰𝗵𝗶𝗻𝗟𝗼𝗼𝗽 (the engine) and 𝘂𝗿𝗰𝗵𝗶𝗻𝗯𝗼𝘁 (the product) are fully open source under MIT. No paywalls. No lock-in. Just infrastructure you can fork, extend, and ship with.
+
+
+𝗪𝗵𝗮𝘁 𝗶𝘀 𝗨𝗿𝗰𝗵𝗶𝗻𝗟𝗼𝗼𝗽?
+
+A 𝘀𝗶𝗻𝗴𝗹𝗲 𝗝𝗮𝘃𝗮𝗦𝗰𝗿𝗶𝗽𝘁 𝗳𝗶𝗹𝗲. Drop it into any project — browser extensions, Telegram bots, CLIs, servers. A deterministic 𝗧𝗛𝗜𝗡𝗞 → 𝗔𝗖𝗧 → 𝗢𝗕𝗦𝗘𝗥𝗩𝗘 → 𝗗𝗘𝗖𝗜𝗗𝗘 loop with persistent memory, tool execution, and self-evolving skills.
+
+It gives you:
+
+𝗠𝘂𝗹𝘁𝗶-𝘀𝘁𝗲𝗽 𝗿𝗲𝗮𝘀𝗼𝗻𝗶𝗻𝗴 — up to 24 chained tool calls per task
+𝟳-𝗹𝗮𝘆𝗲𝗿 𝗽𝗲𝗿𝘀𝗶𝘀𝘁𝗲𝗻𝘁 𝗺𝗲𝗺𝗼𝗿𝘆 — condensed history, user profile, session summaries, manual memories, learned skills, project plans
+𝗦𝗲𝗹𝗳-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝘀𝗸𝗶𝗹𝗹𝘀 — behaviors that evolve from feedback
+𝗚𝗼𝗮𝗹 𝗱𝗲𝗰𝗼𝗺𝗽𝗼𝘀𝗶𝘁𝗶𝗼𝗻 — complex tasks broken into subtask chains
+𝗣𝗹𝘂𝗴𝗴𝗮𝗯𝗹𝗲 𝗟𝗟𝗠 — OpenAI, Anthropic, or your own
+𝗣𝗹𝘂𝗴𝗴𝗮𝗯𝗹𝗲 𝘀𝘁𝗼𝗿𝗮𝗴𝗲 — in-memory, Redis, SQLite, whatever you need
+
+
+𝗕𝘂𝗶𝗹𝗱𝗶𝗻𝗴 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝘁𝗼𝗼𝗹 𝘁𝗮𝗸𝗲𝘀 𝟱 𝗹𝗶𝗻𝗲𝘀:
+
+const { urchinLoop, createMemoryStorage } = require('./urchinloop.js');
+
+const result = await urchinLoop('Analyze this data', {
+  storage: createMemoryStorage(),
+  callLLM: yourLLMFunction,
+  tools: { MY_TOOL: async (param) => { /* your logic */ } }
+});
+
+That's it. 𝗔𝗻𝘆 𝗱𝗲𝘃 can use this to build their own tools.
+
+
+𝘂𝗿𝗰𝗵𝗶𝗻𝗯𝗼𝘁: 𝟱𝟱 𝘁𝗼𝗼𝗹𝘀 𝗮𝗻𝗱 𝗴𝗿𝗼𝘄𝗶𝗻𝗴
+
+urchinbot is what you get when you build on UrchinLoop. It currently has 𝟱𝟱 𝘁𝗼𝗼𝗹𝘀 — with plans for many, many more built-in tools already in the pipeline.
+
+Right now:
+
+Solana token scanning with risk scores
+Wallet PnL tracking with visual shareable cards
+DexScreener charts inline
+Direct on-chain pump.fun token deployment (atomic create+buy)
+Website builder and deployer
+Zero-LLM-cost wallet activity monitoring
+Autonomous background tasks
+Self-evolving skills that learn 𝗬𝗢𝗨𝗥 preferences
+
+𝗧𝗵𝗲 𝗽𝗹𝗮𝗻: refine urchinbot into a tool that gets smarter as users teach it skills. Every conversation shapes it. And potentially — 𝘀𝗸𝗶𝗹𝗹 𝘀𝗵𝗮𝗿𝗶𝗻𝗴 𝗯𝗲𝘁𝘄𝗲𝗲𝗻 𝘂𝘀𝗲𝗿𝘀 soon 👀
+
+
+𝗪𝗵𝗮𝘁'𝘀 𝗰𝗼𝗺𝗶𝗻𝗴 𝗻𝗲𝘅𝘁
+
+𝗫 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻 — urchinbot natively on the timeline
+𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻 — same brain, same 55+ tools, no extension needed
+𝗠𝗮𝗻𝘆 𝗺𝗼𝗿𝗲 𝗯𝘂𝗶𝗹𝘁-𝗶𝗻 𝘁𝗼𝗼𝗹𝘀 — we're just getting started
+𝗦𝗸𝗶𝗹𝗹 𝘀𝗵𝗮𝗿𝗶𝗻𝗴 — your urchinbot teaches other urchinbots
+
+
+Open source utility from day one. We're not building another product behind a paywall. We're building 𝗶𝗻𝗳𝗿𝗮𝘀𝘁𝗿𝘂𝗰𝘁𝘂𝗿𝗲 — open, extensible, composable.
+
+𝗔𝗻𝘆 𝗱𝗲𝘃 𝗰𝗮𝗻 𝘂𝘀𝗲 𝗨𝗿𝗰𝗵𝗶𝗻𝗟𝗼𝗼𝗽 𝘁𝗼 𝗯𝘂𝗶𝗹𝗱 𝘁𝗵𝗲𝗶𝗿 𝗼𝘄𝗻 𝘁𝗼𝗼𝗹𝘀. Fork it. Extend it. Ship something with it. The engine is free. What you build with it is yours.
+
+
+𝗚𝗲𝘁 𝘀𝘁𝗮𝗿𝘁𝗲𝗱
+
+𝗪𝗲𝗯𝘀𝗶𝘁𝗲: urchinbot.fun
+𝗚𝗶𝘁𝗛𝘂𝗯: github.com/urchinbotdev/urchinbot
+𝗘𝗻𝗴𝗶𝗻𝗲: /urchinloop/urchinloop.js (single file, MIT license)
+𝗙𝗼𝗹𝗹𝗼𝘄: @urchinbot
+
+Star the repo. Build something. Show us what you make.
+
+𝗢𝗽𝗲𝗻 𝘀𝗼𝘂𝗿𝗰𝗲 𝘄𝗶𝗻𝘀.
