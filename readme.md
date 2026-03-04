@@ -426,7 +426,6 @@ docs/                     Skills guide and documentation
 
 ## Roadmap
 
-- **Urchin Launchpad** - branded site showcasing all Urchin-deployed tokens with on-chain creator fee sharing (passive revenue)
 - Telegram bot - same agent, same tools, no extension
 - Skill sharing - export/import between users
 - Custom tool definitions - teach it to call new APIs
@@ -455,10 +454,7 @@ Not financial advice. Memecoins are risky. DYOR.
 | [Run Free with Ollama](docs/ollama-guide.md) | Set up urchinbot with local AI — zero cost, full privacy, no API key |
 | [Free Cloud Providers](docs/free-providers.md) | Use Groq, Cerebras, or Google AI Studio for free cloud-hosted AI |
 | [Self-Evolving Skills](docs/skills.md) | How the agent learns, scores, and prunes behavioral skills |
-| [Pump.fun Developer Updates](pump-dev-updates/) | Changelog of all Pump program upgrades and breaking changes |
 | [UrchinLoop Engine](urchinloop/) | Portable reasoning engine — drop into any JS project |
-| [Urchin Launchpad Plan](launchpad-plan/) | Architecture for a branded launchpad with on-chain fee sharing |
-| [Vanity Grinder](vanity-grinder/) | Generate custom Solana mint addresses for pump.fun deploys |
 
 ---
 
