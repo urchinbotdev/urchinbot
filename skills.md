@@ -306,4 +306,4 @@ Yes — the auto-learning analysis (every 7th conversation) and self-evaluation 
 
 ---
 
-[Back to main README](../README.md)
+[Back to main README](../readme.md) | [urchinbot Website](https://urchinbot.fun) | [urchinbot on X](https://x.com/urchinbot) | [GitHub](https://github.com/urchinbotdev/urchinbot)
