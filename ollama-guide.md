@@ -193,3 +193,17 @@ Then select `LLaVA 7B (vision capable)` in urchinbot settings. LLaVA can process
 | **Embeddings** | nomic-embed-text | text-embedding-3-small | Not supported |
 | **Internet required** | No (for AI) | Yes | Yes |
 | **Setup** | Install Ollama + pull model | Get API key | Get API key |
+
+---
+
+## Don't Want to Run Locally?
+
+If your machine doesn't have enough RAM or you prefer cloud speed, several providers offer **free tiers** with no credit card:
+
+- **Groq** — Llama 3.3 70B, extremely fast, 14K free requests/day
+- **Google AI Studio** — Gemini 2.0 Flash with vision support, 1.5K free requests/day
+- **Cerebras** — Llama 3.3 70B, 1K free requests/day
+
+All work through urchinbot's "OpenAI Compatible" provider setting.
+
+[Full free cloud providers guide >](free-providers.md)
