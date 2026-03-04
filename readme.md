@@ -454,7 +454,7 @@ Not financial advice. Memecoins are risky. DYOR.
 | [Run Free with Ollama](docs/ollama-guide.md) | Set up urchinbot with local AI — zero cost, full privacy, no API key |
 | [Free Cloud Providers](docs/free-providers.md) | Use Groq, Cerebras, or Google AI Studio for free cloud-hosted AI |
 | [Self-Evolving Skills](docs/skills.md) | How the agent learns, scores, and prunes behavioral skills |
-| [UrchinLoop Engine](urchinloop/) | Portable reasoning engine — drop into any JS project |
+| [UrchinLoop Engine](urchinloop.md/) | Portable reasoning engine — drop into any JS project |
 
 ---
 
