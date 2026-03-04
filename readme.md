@@ -12,7 +12,7 @@ A local-first AI agent that lives in your browser. It thinks step-by-step, scans
 
 > Download VIA chromestore (Updates might not be as frequent as github) [urchinbot on Chromestore](https://chromewebstore.google.com/detail/urchinbot/imckdppocjejemgfdbllcdkdeinmkeno)
 
-1. Download [urchinbot_v0.110.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.110.zip)
+1. Download [urchinbot_v0.08.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v.110.zip)
 2. Unzip it
 3. Go to `chrome://extensions` > turn on **Developer mode**
 4. Click **Load unpacked** > select the `urchinbot-extension` folder
@@ -310,13 +310,16 @@ Click the urchinbot icon > **Settings**.
 
 ### LLM Provider (required)
 
-| Provider | Get Key | Recommended Model |
-|----------|---------|-------------------|
-| OpenAI | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | gpt-4o or gpt-4o-mini |
-| Anthropic | [console.anthropic.com](https://console.anthropic.com/settings/keys) | claude-sonnet-4-20250514 |
-| OpenAI Compatible | Your provider's dashboard | Any chat model |
+| Provider | Get Key | Recommended Model | Cost |
+|----------|---------|-------------------|------|
+| **Ollama (Local)** | No key needed — [install Ollama](https://ollama.com) | llama3.1 or qwen2.5:14b | **Free** |
+| OpenAI | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | gpt-4.1 or gpt-4.1-mini | Paid |
+| Anthropic | [console.anthropic.com](https://console.anthropic.com/settings/keys) | claude-sonnet-4-20250514 | Paid |
+| OpenAI Compatible | Your provider's dashboard | Any chat model | Varies |
 
-For faster replies, use **gpt-4o-mini** or a lighter model.
+**Run for free with Ollama** — install Ollama, pull a model (`ollama pull llama3.1`), select "Ollama (Local — Free)" in settings. All AI runs on your machine with zero cost and full privacy. [Full Ollama setup guide >](docs/ollama-guide.md)
+
+For fastest cloud replies, use **gpt-4.1-mini** or **Claude 3.5 Haiku**.
 
 ### Solana RPC (optional)
 
@@ -445,311 +448,17 @@ Not financial advice. Memecoins are risky. DYOR.
 
 ---
 
-## License
-
-MIT
-- Click to open full panel
-- Background results appear in the bubble + badge on mascot
-- Unified history — companion and panel share the same conversation
-
----
-
-### Site Builder
-
-Describe a site → get full HTML/CSS/JS → edit with prompts → deploy to Netlify.
-
-- AI self-critique scores design (1-10), auto-fixes below 8
-- Live site tracking with green LIVE indicator
-- Edit and push live in one click
-- Upload images or grab from any page
-- Preview, download ZIP, or deploy
-- Manage all Netlify sites — view, visit, bulk-delete
-
----
-
-### Autonomous Tasks & Monitoring
-
-The agent works in the background — but only when you ask.
-
-| Tool | What It Does |
-|------|-------------|
-| **Monitor** | Recurring checks on a schedule (min 5 min). Full agent loop each tick with change detection. Auto-expires after 6 hours |
-| **Set Timer** | One-shot delayed task — runs full agent loop when it fires |
-| **Schedule Task** | Queue immediate background work, non-blocking |
-| **List / Stop** | View active monitors or cancel any time |
-
-Results delivered via chat, companion bubble, and Chrome notifications.
-
----
-
-### Self-Evolving Skills
-
-The agent learns from every interaction and gets better over time. [Full skills guide →](https://github.com/urchinbotdev/urchinbot/blob/main/skills.md)
-
-- Saves preferences and patterns automatically
-- Every skill has a quality score (0-100) updated via evaluation + user feedback
-- Thumbs up/down directly adjusts skill scores
-- Detects satisfaction signals — corrections, praise, frustration
-- Auto-prunes low-scoring and unused skills
-- Ask "what have you learned?" to see all skills, or tell it to forget one
-
----
-
-### Goal Tracking
-
-Multi-session project planning that persists across conversations.
-
-- Set goals with milestones and descriptions
-- Update progress, mark milestones done
-- Active goals auto-loaded into every conversation
-- Up to 10 concurrent projects
-
----
-
-### Goal Decomposition
-
-Complex multi-phase requests are automatically broken into ordered subtasks with dependency tracking, executed recursively through the full loop, then synthesized into a single response.
-
----
-
-### Token Deployer
-
-Prepare pump.fun launches with auto-fill — name, symbol, description, image. Generate and deploy a token landing page to Netlify.
-
----
-
-### Token Scanner
-
-Paste any Solana mint address → top holders, concentration, risk score, cross-referencing, fresh wallet flags, Solscan links.
-
----
-
-### Right-Click Menu
-
-Send text, links, images, or full page context to urchinbot from any page.
-
----
-
-## Agent Tools (44)
-
-![urchinbot Toolkit](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-tools.png)
-
-<details>
-<summary>View all 44 tools</summary>
-
-| Tool | What It Does |
-|------|-------------|
-| Web Search | Real-time search via DuckDuckGo |
-| Screenshot | Capture and visually analyze current page |
-| Reverse Image Search | Identify people, memes, logos via vision + web search |
-| Fetch URL | Read and summarize any webpage |
-| Token Price | Live Solana token price via Jupiter |
-| DexScreener Charts | Market data — price changes, volume, liquidity, FDV, inline chart preview |
-| Wallet Balance | SOL + token holdings via RPC |
-| Wallet History | Recent transaction history |
-| Token Scan | Top holders, concentration, risk score |
-| Multi-Scan | Compare up to 5 tokens side-by-side |
-| Detect Mints | Extract Solana addresses from text |
-| PnL Check | Full portfolio report with USD values |
-| Watch / Unwatch Wallet | Manage persistent watchlist |
-| List Watchlist | Show all watched wallets |
-| Wallet Activity | Query tracked buys, sells, SOL moves |
-| Set / Get Digest | Configure daily briefing schedule |
-| PnL Card | Visual PnL snapshot with downloadable PNG |
-| List Scans | View all scanned tokens with entry prices |
-| Build Site | Generate static website with AI self-critique |
-| Edit Site | Modify with follow-up prompts |
-| Deploy Site | Push to Netlify |
-| List / Delete Sites | Manage Netlify deploys |
-| Token Launch | Pump.fun auto-fill |
-| Memory (Remember/Recall) | Save and retrieve info across sessions |
-| Search Memory | Semantic search via embeddings |
-| Set Alert | Price and wallet alerts with notifications |
-| Remind Me | Scheduled follow-ups with intelligent execution |
-| Set Timer | Delayed background tasks |
-| Schedule Task | Immediate non-blocking background work |
-| Monitor / List / Stop | Recurring checks with change detection |
-| Continue | Self-extend reasoning budget (up to 24 steps) |
-| Learn / List / Forget Skill | Self-evolving behavioral instructions |
-| Set / Update / Get Goals | Multi-session project planning |
-
-</details>
-
----
-
-## How UrchinLoop Works
-
-UrchinLoop is the agent runtime behind urchinbot — a multi-step reasoning engine, not a chatbot wrapper.
-
-Every request enters a loop: **think → act → observe → decide**. The agent can chain up to 24 tool calls, fire tools in parallel, extend its own step budget, schedule follow-up work, and learn from the interaction.
-
-### Architecture
-
-![UrchinLoop Architecture](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-architecture.png)
-
-### The Loop
-
-![UrchinLoop Reasoning Pipeline](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-flow.png)
-
-### Routing
-
-Requests are classified before entering the loop:
-
-| Type | Steps | Examples |
-|------|-------|---------|
-| Quick | 1 | Greetings, memory lookups |
-| Standard | 3 | Price checks, web searches |
-| Deep | 8+ | Multi-tool analysis, research chains |
-
-The agent can self-extend mid-loop with the CONTINUE tool, up to 24 steps.
-
-### Parallel Execution
-
-Independent tools fire simultaneously:
-
-```
-THINK: "I need price, DexScreener data, and deployer wallet"
-  ├── GET_TOKEN_PRICE  →
-  ├── DEX_DATA         →  all return → next THINK step
-  └── GET_WALLET_BALANCE →
-```
-
----
-
-## Memory System
-
-![UrchinLoop Memory System](https://github.com/urchinbotdev/urchinbot/blob/main/diagrams/urchinloop-memory.png)
-
-| Layer | What | Limits |
-|-------|------|--------|
-| Condensed History | Compressed narrative of all past conversations | Never expires |
-| Recent Chat | Last 30 messages at full fidelity | Rolling |
-| User Profile | Auto-extracted knowledge (wallets, preferences) | 50 keys max |
-| Session Summaries | Bullet points from past sessions | Last 20 |
-| Manual Memories | Anything you tell it to remember | 100 max |
-| Learned Skills | Behavioral instructions, scored 0-100 | Auto-pruned |
-| Project Plans | Goals, milestones, progress | 10 max |
-
-**Context rot prevention** — memory injection is relevance-filtered using embeddings. Only memories matching your current message are loaded. Skills below score threshold are excluded. Hard context budget of 80K chars. Tool outputs are capped per-tool.
-
-Click the **brain icon** in the Ask tab to view or wipe all memory.
-
----
-
-## Setup
-
-Click the urchinbot icon → **Settings**.
-
-### LLM Provider (required)
-
-| Provider | Get Key | Recommended Model |
-|----------|---------|-------------------|
-| OpenAI | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | gpt-4o or gpt-4o-mini |
-| Anthropic | [console.anthropic.com](https://console.anthropic.com/settings/keys) | claude-sonnet-4-20250514 |
-| OpenAI Compatible | Your provider's dashboard | Any chat model |
-
-For faster replies, use **gpt-4o-mini** or a lighter model.
-
-### Solana RPC (optional)
-
-Required for token scanning, wallet checks, and transaction history.
-
-| Provider | Free Tier |
-|----------|-----------|
-| [Helius](https://www.helius.dev) | 100k requests/day |
-| [QuickNode](https://www.quicknode.com) | Limited |
-
-### Netlify Token (optional)
-
-For one-click deploys: [Get token](https://app.netlify.com/user/applications#personal-access-tokens) → name it `urchinbot` → paste in Settings.
-
----
-
-## Example Prompts
-
-```
-what are you?
-what token is this page about?
-search for latest Solana news
-what's the price of JUP?
-```
-
-```
-check wallet 7xKX... balance and recent transactions
-compare these tokens: MINT1, MINT2, MINT3
-take a screenshot and tell me what you see
-reverse image search this meme
-```
-
-```
-build me a crypto dashboard with dark theme
-deploy my site to netlify
-edit the footer and push it live
-```
-
-```
-monitor this token every 15 minutes
-check this token again in 30 minutes
-watch this wallet — label it "whale1"
-set up daily digest at 8:30am
-show my pnl on BONK
-```
-
-```
-set a goal: launch token landing page by Friday
-what skills have you learned?
-what do you remember about me?
-```
-
----
-
-## Project Structure
-
-```
-urchinbot-extension/
-  manifest.json       Chrome MV3 config
-  background.js       UrchinLoop engine, 44 tools, autonomous tasks, monitors
-  content.js          Overlay UI, companion mode, page context
-  sidepanel.html/js   Chrome side panel UI
-  popup.html/js       Toolbar menu
-  options.html/js     Settings page
-  styles.css          Host element styles
-  urchin.png          Logo
-  icons/              Toolbar icons
-  lib/jszip.min.js    ZIP generation
-```
-
----
-
-## Security
-
-- **Local-first** — all keys and data stay in `chrome.storage.local`
-- **No custodial keys** — never asks for seed phrases or private keys
-- **No tracking** — zero analytics, zero telemetry
-- **External calls only to** — your LLM provider, Solana RPC, DuckDuckGo, Jupiter, DexScreener, Netlify
-- **Background tasks** — run in your browser's service worker, not on any remote server
-
----
-
-## Roadmap
-
-- Telegram bot — same agent, same tools, no extension
-- Skill sharing — export/import between users
-- Custom tool definitions — teach it to call new APIs
-- Multi-agent collaboration — specialist sub-agents for complex tasks
-- Vision-in-the-loop — multimodal reasoning during tool chains
-- Code execution sandbox
-
----
-
-## Disclaimers
-
-Not financial advice. Memecoins are risky. DYOR.
-
-- Pump.fun integration only auto-fills forms — you confirm all transactions
-- AI-generated websites should be reviewed before production use
-- Token scanning shows on-chain data — interpretation is up to you
-- Background tasks consume LLM API credits when they execute
+## Guides & Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [Run Free with Ollama](docs/ollama-guide.md) | Set up urchinbot with local AI — zero cost, full privacy, no API key |
+| [Free Cloud Providers](docs/free-providers.md) | Use Groq, Cerebras, or Google AI Studio for free cloud-hosted AI |
+| [Self-Evolving Skills](docs/skills.md) | How the agent learns, scores, and prunes behavioral skills |
+| [Pump.fun Developer Updates](pump-dev-updates/) | Changelog of all Pump program upgrades and breaking changes |
+| [UrchinLoop Engine](urchinloop/) | Portable reasoning engine — drop into any JS project |
+| [Urchin Launchpad Plan](launchpad-plan/) | Architecture for a branded launchpad with on-chain fee sharing |
+| [Vanity Grinder](vanity-grinder/) | Generate custom Solana mint addresses for pump.fun deploys |
 
 ---
 
