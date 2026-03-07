@@ -12,7 +12,7 @@ A local-first AI agent that lives in your browser. It thinks step-by-step, scans
 
 > Download VIA chromestore (Updates might not be as frequent as github) [urchinbot on Chromestore](https://chromewebstore.google.com/detail/urchinbot/imckdppocjejemgfdbllcdkdeinmkeno)
 
-1. Download [urchinbot_v0.111.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.111.zip)
+1. Download [urchinbot_v0.13.zip](https://github.com/urchinbotdev/urchinbot/blob/main/urchinbot_v0.13.zip)
 2. Unzip it
 3. Go to `chrome://extensions` > turn on **Developer mode**
 4. Click **Load unpacked** > select the `urchinbot-extension` folder
